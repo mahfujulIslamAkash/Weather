@@ -13,6 +13,13 @@
 		350A5D8F2BA8B32500324FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 350A5D8D2BA8B32500324FD4 /* Main.storyboard */; };
 		350A5D912BA8B32600324FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 350A5D902BA8B32600324FD4 /* Assets.xcassets */; };
 		350A5D942BA8B32600324FD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 350A5D922BA8B32600324FD4 /* LaunchScreen.storyboard */; };
+		350A5D9D2BA8B5ED00324FD4 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350A5D9C2BA8B5ED00324FD4 /* WeatherViewModel.swift */; };
+		350A5DA02BA8B77400324FD4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350A5D9F2BA8B77400324FD4 /* UIView+Extension.swift */; };
+		350A5DA32BA8B9D400324FD4 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350A5DA22BA8B9D400324FD4 /* Support.swift */; };
+		350A5DA52BA8C5D600324FD4 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350A5DA42BA8C5D600324FD4 /* CGFloat+Extension.swift */; };
+		350A5DA82BA8CE0000324FD4 /* Inter-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 350A5DA72BA8CE0000324FD4 /* Inter-Medium.otf */; };
+		350A5DAA2BA8CFC200324FD4 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350A5DA92BA8CFC200324FD4 /* UIColor+Extension.swift */; };
+		350A5DAC2BA8D0A500324FD4 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 350A5DAB2BA8D0A500324FD4 /* Inter-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		350A5D902BA8B32600324FD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		350A5D932BA8B32600324FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		350A5D952BA8B32600324FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		350A5D9C2BA8B5ED00324FD4 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		350A5D9F2BA8B77400324FD4 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		350A5DA22BA8B9D400324FD4 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
+		350A5DA42BA8C5D600324FD4 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		350A5DA72BA8CE0000324FD4 /* Inter-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.otf"; sourceTree = "<group>"; };
+		350A5DA92BA8CFC200324FD4 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		350A5DAB2BA8D0A500324FD4 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,9 @@
 		350A5D862BA8B32500324FD4 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				350A5DA62BA8CDF200324FD4 /* Fonts */,
+				350A5DA12BA8B9BE00324FD4 /* Supports */,
+				350A5D9B2BA8B5DE00324FD4 /* Models */,
 				350A5D872BA8B32500324FD4 /* AppDelegate.swift */,
 				350A5D892BA8B32500324FD4 /* SceneDelegate.swift */,
 				350A5D8B2BA8B32500324FD4 /* HomeController.swift */,
@@ -65,6 +82,42 @@
 				350A5D952BA8B32600324FD4 /* Info.plist */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		350A5D9B2BA8B5DE00324FD4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				350A5D9C2BA8B5ED00324FD4 /* WeatherViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		350A5D9E2BA8B75D00324FD4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				350A5D9F2BA8B77400324FD4 /* UIView+Extension.swift */,
+				350A5DA42BA8C5D600324FD4 /* CGFloat+Extension.swift */,
+				350A5DA92BA8CFC200324FD4 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		350A5DA12BA8B9BE00324FD4 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				350A5D9E2BA8B75D00324FD4 /* Extensions */,
+				350A5DA22BA8B9D400324FD4 /* Support.swift */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		350A5DA62BA8CDF200324FD4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				350A5DAB2BA8D0A500324FD4 /* Inter-Regular.otf */,
+				350A5DA72BA8CE0000324FD4 /* Inter-Medium.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +179,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				350A5D942BA8B32600324FD4 /* LaunchScreen.storyboard in Resources */,
+				350A5DAC2BA8D0A500324FD4 /* Inter-Regular.otf in Resources */,
 				350A5D912BA8B32600324FD4 /* Assets.xcassets in Resources */,
 				350A5D8F2BA8B32500324FD4 /* Main.storyboard in Resources */,
+				350A5DA82BA8CE0000324FD4 /* Inter-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +194,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				350A5D8C2BA8B32500324FD4 /* HomeController.swift in Sources */,
+				350A5D9D2BA8B5ED00324FD4 /* WeatherViewModel.swift in Sources */,
 				350A5D882BA8B32500324FD4 /* AppDelegate.swift in Sources */,
+				350A5DA02BA8B77400324FD4 /* UIView+Extension.swift in Sources */,
 				350A5D8A2BA8B32500324FD4 /* SceneDelegate.swift in Sources */,
+				350A5DA52BA8C5D600324FD4 /* CGFloat+Extension.swift in Sources */,
+				350A5DA32BA8B9D400324FD4 /* Support.swift in Sources */,
+				350A5DAA2BA8CFC200324FD4 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
