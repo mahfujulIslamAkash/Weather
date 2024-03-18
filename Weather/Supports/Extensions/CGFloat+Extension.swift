@@ -19,7 +19,7 @@ extension CGFloat{
             if h > 0{
                 self.init(.init(h: h) * w / h)
             }else{
-                self.init(w / 414 * UIScreen.main.bounds.size.width)
+                self.init(w / 218 * UIScreen.main.bounds.size.width)
             }
         }
     }
@@ -35,7 +35,7 @@ extension CGFloat{
             if w > 0{
                 self.init(.init(w: w) * h / w)
             }else{
-                self.init(h / 896 * UIScreen.main.bounds.size.height)
+                self.init(h / 471 * UIScreen.main.bounds.size.height)
             }
         }
     }
