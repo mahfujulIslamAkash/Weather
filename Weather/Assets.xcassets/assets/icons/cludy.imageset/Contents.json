@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cludy.png",
+      "filename" : "cludy.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cludy@2x.png",
+      "filename" : "cludy@2x.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cludy@3x.png",
+      "filename" : "cludy@3x.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

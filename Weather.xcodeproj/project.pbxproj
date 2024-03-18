@@ -27,6 +27,7 @@
 		351E16B92BA8E10D009D5DA0 /* DescriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E16B82BA8E10D009D5DA0 /* DescriptionListView.swift */; };
 		351E16BB2BA8E1F1009D5DA0 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E16BA2BA8E1F1009D5DA0 /* BottomView.swift */; };
 		351E16BD2BA8E258009D5DA0 /* NewHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E16BC2BA8E258009D5DA0 /* NewHomeViewController.swift */; };
+		353729982BA8F47700915455 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729972BA8F47700915455 /* DescriptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		351E16B82BA8E10D009D5DA0 /* DescriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionListView.swift; sourceTree = "<group>"; };
 		351E16BA2BA8E1F1009D5DA0 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		351E16BC2BA8E258009D5DA0 /* NewHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeViewController.swift; sourceTree = "<group>"; };
+		353729972BA8F47700915455 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				351E16B62BA8E0F2009D5DA0 /* WeatherMainTitleView.swift */,
 				351E16B82BA8E10D009D5DA0 /* DescriptionListView.swift */,
 				351E16BA2BA8E1F1009D5DA0 /* BottomView.swift */,
+				353729972BA8F47700915455 /* DescriptionCell.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				351E16B32BA8E02C009D5DA0 /* TopView.swift in Sources */,
 				350A5DAA2BA8CFC200324FD4 /* UIColor+Extension.swift in Sources */,
 				351E16B52BA8E0A1009D5DA0 /* TitleView.swift in Sources */,
+				353729982BA8F47700915455 /* DescriptionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
