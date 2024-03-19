@@ -123,9 +123,7 @@ class NewHomeViewController: UIViewController {
 
 extension NewHomeViewController: HomeViewProtocols{
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
-        cityInformation.name = name
-        cityInformation.lat = lat
-        cityInformation.lon = lon
+        cityInformation = CityModel(name: name, lat: lat, lon: lon)
     }
     
     func tappedOnSearch() {
@@ -169,8 +167,17 @@ extension NewHomeViewController: CLLocationManagerDelegate{
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        //
-        manager.requestLocation()
+        if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways{
+            manager.requestLocation()
+        }
+        else{
+            showAlertMessage(title: "Permission need", message: "Go to settings page!!!", completion: {(done) in
+                if done{
+                    UIApplication.shared.open(URL(string: "App-prefs:LOCATION_SERVICES")!)
+                }
+            })
+        }
+        
     }
     
 }

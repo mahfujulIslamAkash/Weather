@@ -35,6 +35,7 @@
 		353729A72BA956B800915455 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729A62BA956B800915455 /* Date+Extension.swift */; };
 		353729A92BA956EE00915455 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729A82BA956EE00915455 /* NetworkService.swift */; };
 		353729AB2BA9590700915455 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729AA2BA9590700915455 /* City.swift */; };
+		353729AD2BA99D8800915455 /* UIController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729AC2BA99D8800915455 /* UIController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		353729A62BA956B800915455 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		353729A82BA956EE00915455 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		353729AA2BA9590700915455 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		353729AC2BA99D8800915455 /* UIController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				350A5DA42BA8C5D600324FD4 /* CGFloat+Extension.swift */,
 				350A5DA92BA8CFC200324FD4 /* UIColor+Extension.swift */,
 				353729A62BA956B800915455 /* Date+Extension.swift */,
+				353729AC2BA99D8800915455 /* UIController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				3537299D2BA904EB00915455 /* SearchViewController.swift in Sources */,
 				353729A72BA956B800915455 /* Date+Extension.swift in Sources */,
 				350A5D9D2BA8B5ED00324FD4 /* WeatherViewModel.swift in Sources */,
+				353729AD2BA99D8800915455 /* UIController+Extension.swift in Sources */,
 				351E16B92BA8E10D009D5DA0 /* DescriptionListView.swift in Sources */,
 				350A5D882BA8B32500324FD4 /* AppDelegate.swift in Sources */,
 				3537299B2BA8F9F500915455 /* DayCell.swift in Sources */,
