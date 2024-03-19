@@ -10,11 +10,7 @@ import UIKit
 extension CGFloat{
     init(w: CGFloat, for h: CGFloat = 0){
         if UIDevice.current.userInterfaceIdiom == .pad { //iPad 10.2 (8th Gen): 810 ╳ 1080
-            if h > 0{
-                self.init(.init(h: h) * w / h)
-            }else{
-                self.init(w / 810 * UIScreen.main.bounds.size.width)
-            }
+            self.init(w*2)
         }else{
             if h > 0{
                 self.init(.init(h: h) * w / h)
@@ -26,11 +22,7 @@ extension CGFloat{
     
     init(h: CGFloat, for w: CGFloat = 0){
         if UIDevice.current.userInterfaceIdiom == .pad { //iPad 10.2 (8th Gen): 810 ╳ 1080
-            if w > 0{
-                self.init(.init(w: w) * h / w)
-            }else{
-                self.init(h / 1080 * UIScreen.main.bounds.size.height)
-            }
+            self.init(h*2)
         }else{
             if w > 0{
                 self.init(.init(w: w) * h / w)
