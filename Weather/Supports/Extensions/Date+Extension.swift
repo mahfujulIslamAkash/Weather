@@ -54,6 +54,18 @@ extension Date {
         return "error"
     }
     
+    static func dayOfMonthFromDt(dt: Int) -> String{
+        let day = dt
+        let date = Date(timeIntervalSince1970: Double(day))
+        let components = date.get(.day, .month, .year)
+        guard let dayNumber = components.day else{
+            return "01"
+        }
+        let dayString = "\(dayNumber)"
+        return dayString
+        
+    }
+    
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
     }
