@@ -8,7 +8,7 @@
 import UIKit
 
 class DescriptionListView: UIView {
-    
+    var dummyData = ["23cm", "56%", "23km/H"]
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -22,6 +22,8 @@ class DescriptionListView: UIView {
         return col
     }()
     
+    var weatherData: WeatherResult!
+    
     
     
     override init(frame: CGRect) {
@@ -34,6 +36,16 @@ class DescriptionListView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func updateData(weatherData: WeatherResult){
+        self.weatherData = weatherData
+        dummyData = [
+            "\(weatherData.current.dew_point)cm",
+            "\(weatherData.current.humidity)%",
+            "\(weatherData.current.wind_speed)km/h"
+        ]
+        collectionView.reloadData()
+    }
 
 }
 
@@ -44,7 +56,16 @@ extension DescriptionListView: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! DescriptionCell
-        cell.update()
+        if indexPath.row == 0{
+            cell.update(imageIcon: "rain", title: "Rain", value: dummyData[0])
+        }
+        else if indexPath.row == 1{
+            cell.update(imageIcon: "humidity", title: "Humidity", value: dummyData[1])
+        }
+        else{
+            cell.update(imageIcon: "wind", title: "Wind", value: dummyData[2])
+        }
+        
         return cell
     }
     

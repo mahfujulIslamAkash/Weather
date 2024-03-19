@@ -8,6 +8,12 @@
 import UIKit
 
 class BottomView: UIView {
+    
+    var daily: [Daily] = []{
+        didSet{
+            title.text = "Next \(daily.count) days"
+        }
+    }
 
     let title: UILabel = {
         let title = UILabel()
@@ -46,18 +52,24 @@ class BottomView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func updateData(weatherData: WeatherResult){
+
+        daily = weatherData.daily
+        collectionView.reloadData()
+    }
 
 }
 
 
 extension BottomView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return daily.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DayCell
-        cell.update()
+        cell.update(daily: daily[indexPath.row])
         return cell
     }
     

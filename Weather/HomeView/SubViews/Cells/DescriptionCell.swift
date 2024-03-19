@@ -11,6 +11,8 @@ class DescriptionCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "rain")
+        image.contentMode = .scaleAspectFill
+//        image.layer.borderWidth = 0.5
         return image
     }()
     
@@ -32,21 +34,24 @@ class DescriptionCell: UICollectionViewCell {
         return title
     }()
     
-    func update(){
+    func update(imageIcon: String, title: String, value: String){
         contentView.layer.borderWidth = 0.5
         contentView.layer.cornerRadius = 15
         contentView.addSubview(imageView)
         contentView.addSubview(cellName)
         contentView.addSubview(cellValue)
         
-        imageView.anchorView(left: contentView.leftAnchor, paddingLeft: .init(w: 11))
-        imageView.centerY(inView: contentView)
+//        imageView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, paddingLeft: .init(w: 0),paddingBottom: .init(h: -5), width: .init(w: 38))
         
-        cellName.anchorView(left: imageView.rightAnchor, paddingLeft: .init(w: 8))
+        cellName.anchorView(left: contentView.leftAnchor, paddingLeft: .init(w: 15))
         cellName.centerY(inView: contentView)
         
         cellValue.anchorView(right: contentView.rightAnchor, paddingRight: .init(w: 11))
         cellValue.centerY(inView: contentView)
+        
+//        imageView.image = UIImage(named: imageIcon)
+        cellName.text = title
+        cellValue.text = value
     }
     
     

@@ -19,13 +19,13 @@ class TopView: UIView {
         searchButton.anchorView(left: view.leftAnchor, bottom: view.bottomAnchor, paddingLeft: .init(w: 11), paddingBottom: .init(h: 0), width: .init(w: 25), height: .init(h: 25))
 //        searchButton.target(forAction: #selector(searchTapped), withSender: nil)
         searchButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchTapped)))
-        searchButton.layer.borderWidth = 0.5
+//        searchButton.layer.borderWidth = 0.5
         searchButton.isUserInteractionEnabled = true
         
-        let settingsButton = UIImageView()
-        settingsButton.image = Support.sheard.getSettingsIcon()
-        view.addSubview(settingsButton)
-        settingsButton.anchorView(bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: .init(h: 0), paddingRight: .init(w: 11), width: .init(w: 25), height: .init(h: 25))
+//        let settingsButton = UIImageView()
+//        settingsButton.image = Support.sheard.getSettingsIcon()
+//        view.addSubview(settingsButton)
+//        settingsButton.anchorView(bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: .init(h: 0), paddingRight: .init(w: 11), width: .init(w: 25), height: .init(h: 25))
         return view
     }()
 

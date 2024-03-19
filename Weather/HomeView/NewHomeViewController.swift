@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class NewHomeViewController: UIViewController {
 
@@ -20,6 +21,18 @@ class NewHomeViewController: UIViewController {
     let weatherMainView = WeatherMainTitleView()
     let descriptionView = DescriptionListView()
     let bottomView = BottomView()
+    var locationManger: CLLocationManager = CLLocationManager()
+    
+    var weatherResult: WeatherResult!
+    var cityInformation: CityModel!{
+        didSet{
+            //reload view
+            print("city changed")
+            NetworkService.shared.setLatitude(cityInformation.lat)
+            NetworkService.shared.setLongitude(cityInformation.lon)
+            getWeather()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +43,7 @@ class NewHomeViewController: UIViewController {
         view.addSubview(weatherMainView)
         view.addSubview(descriptionView)
         view.addSubview(bottomView)
+//        bottomView.isHidden = true
         
         topView.delegate = self
         
@@ -38,13 +52,15 @@ class NewHomeViewController: UIViewController {
         
         topView.anchorView(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 48))
         
-        titleView.anchorView(top: topView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 81))
+        titleView.anchorView(top: topView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 45))
         
         weatherMainView.anchorView(top: titleView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 88))
         
         descriptionView.anchorView(top: weatherMainView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 154))
         
         bottomView.anchorView(top: descriptionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 100))
+        
+        getLocation()
         
         
         // Do any additional setup after loading the view.
@@ -53,15 +69,104 @@ class NewHomeViewController: UIViewController {
     @objc func pulledRefresh(){
         
     }
+    func getLocation() {
+
+        switch locationManger.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManger = CLLocationManager()
+            locationManger.delegate = self
+            locationManger.desiredAccuracy = kCLLocationAccuracyBest
+            locationManger.requestWhenInUseAuthorization()
+            locationManger.requestLocation()
+        default:
+            print("error, no permission")
+        }
+//        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways{
+//
+//        }
+        
+        
+    }
+    
+    func getWeather(){
+        NetworkService.shared.getWeather(onSuccess: { [self] (result) in
+            print(result.current)
+            weatherResult = result
+            DispatchQueue.main.async { [self] in
+                updateCityInfo()
+                updateMainViewInfo()
+                updateDescriptionViewInfo()
+                updateBottomViewInfo()
+            }
+            
+            
+        }) { (errorMessage) in
+            debugPrint(errorMessage)
+        }
+    }
+    
+    func updateCityInfo(){
+        titleView.cityName.text = cityInformation.name
+        titleView.dateLabel.text = Date.getTodaysDate()
+    }
+    func updateMainViewInfo(){
+        weatherMainView.mainWeatherImageView.image = UIImage(named: weatherResult.current.weather[0].icon)
+        weatherMainView.temparatureLabel.text = "\(Int(weatherResult.current.temp))°"
+        weatherMainView.currentWeatherLabel.text = weatherResult.current.weather[0].description.capitalized
+    }
+    func updateDescriptionViewInfo(){
+        descriptionView.updateData(weatherData: weatherResult)
+    }
+    func updateBottomViewInfo(){
+        bottomView.updateData(weatherData: weatherResult)
+    }
 
 }
 
 extension NewHomeViewController: HomeViewProtocols{
+    func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
+        cityInformation.name = name
+        cityInformation.lat = lat
+        cityInformation.lon = lon
+    }
+    
     func tappedOnSearch() {
         //go to the city choice
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "cityChoiseID") as! SearchViewController
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
+}
+
+extension NewHomeViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            
+            let latitude: Double = location.coordinate.latitude
+            let longitude: Double = location.coordinate.longitude
+            
+            
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location) { [self] (placemarks, error) in
+                if let error = error {
+                    debugPrint(error.localizedDescription)
+                }
+                if let placemarks = placemarks {
+                    if placemarks.count > 0 {
+                        let placemark = placemarks[0]
+                        if let city = placemark.locality {
+                            cityInformation = CityModel(name: city, lat: latitude, lon: longitude)
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        debugPrint(error.localizedDescription)
+    }
 }

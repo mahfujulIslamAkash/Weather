@@ -11,12 +11,13 @@ class TitleView: UIView {
     
     let cityName: UILabel = {
         let label = UILabel()
-        label.text = "Stockholm,\nSweden"
+        label.text = "Stockholm Sweden"
         label.font = UIFont(name: "Inter-Medium", size: .init(w: 20))
         label.textColor = UIColor(hexString: "313341")
         label.textAlignment = .left
         label.numberOfLines = 0
         label.tag = 1
+//        label.layer.borderWidth = 0.5
         return label
     }()
     
@@ -28,6 +29,7 @@ class TitleView: UIView {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.tag = 2
+//        label.layer.borderWidth = 0.5
         return label
     }()
     

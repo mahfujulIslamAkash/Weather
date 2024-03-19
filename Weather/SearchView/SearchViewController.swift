@@ -117,6 +117,7 @@ extension SearchViewController: UITableViewDelegate {
             print(lon)
             
             delegate?.selectedCity(name: name, lat: lat, lon: lon)
+            navigationController?.popViewController(animated: true)
             
         }
     }

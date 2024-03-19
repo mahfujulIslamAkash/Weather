@@ -19,6 +19,7 @@ class DayCell: UICollectionViewCell {
     
     let icon: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFit
         image.image = UIImage(named: "rain")
         return image
     }()
@@ -40,16 +41,35 @@ class DayCell: UICollectionViewCell {
         return stack
     }()
     
-    func update(){
+    func update(daily: Daily){
         contentView.layer.borderWidth = 0.5
         contentView.layer.cornerRadius = 16
         
         contentView.addSubview(stackView)
-        stackView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
+//        stackView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
+        stackView.centerX(inView: self)
+        stackView.centerY(inView: self)
         
         stackView.addArrangedSubview(time)
         stackView.addArrangedSubview(icon)
         stackView.addArrangedSubview(tmp)
+        
+        let day = daily.dt
+        let date = Date(timeIntervalSince1970: Double(day))
+        let components = date.get(.day, .month, .year)
+        guard let dayNumber = components.day else{
+            return
+        }
+        let dayString = "\(dayNumber)"
+        
+//        let date = Date(timeIntervalSince1970: Double(daily.dt))
+//        let hourString = Date.getHourFrom(date: date)
+        time.text = dayString
+        
+        icon.image = UIImage(named: daily.weather[0].icon)
+        tmp.text = "\(Int(daily.temp.day))°\(NetworkService.shared.defaultC ? "C" : "F")"
+        
+        
         
         
 //        time.anchorView(left: contentView.leftAnchor, paddingLeft: .init(w: 11))

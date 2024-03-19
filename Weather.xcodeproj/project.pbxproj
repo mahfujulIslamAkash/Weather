@@ -32,6 +32,9 @@
 		3537299D2BA904EB00915455 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3537299C2BA904EB00915455 /* SearchViewController.swift */; };
 		353729A02BA9509300915455 /* HomeViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3537299F2BA9509300915455 /* HomeViewProtocols.swift */; };
 		353729A52BA955BF00915455 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729A42BA955BF00915455 /* Weather.swift */; };
+		353729A72BA956B800915455 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729A62BA956B800915455 /* Date+Extension.swift */; };
+		353729A92BA956EE00915455 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729A82BA956EE00915455 /* NetworkService.swift */; };
+		353729AB2BA9590700915455 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729AA2BA9590700915455 /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		3537299C2BA904EB00915455 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3537299F2BA9509300915455 /* HomeViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewProtocols.swift; sourceTree = "<group>"; };
 		353729A42BA955BF00915455 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		353729A62BA956B800915455 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		353729A82BA956EE00915455 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		353729AA2BA9590700915455 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 			children = (
 				350A5D9C2BA8B5ED00324FD4 /* WeatherViewModel.swift */,
 				353729A42BA955BF00915455 /* Weather.swift */,
+				353729AA2BA9590700915455 /* City.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -124,6 +131,7 @@
 				350A5D9F2BA8B77400324FD4 /* UIView+Extension.swift */,
 				350A5DA42BA8C5D600324FD4 /* CGFloat+Extension.swift */,
 				350A5DA92BA8CFC200324FD4 /* UIColor+Extension.swift */,
+				353729A62BA956B800915455 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 			children = (
 				350A5D9E2BA8B75D00324FD4 /* Extensions */,
 				350A5DA22BA8B9D400324FD4 /* Support.swift */,
+				353729A82BA956EE00915455 /* NetworkService.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -267,6 +276,7 @@
 				350A5D8C2BA8B32500324FD4 /* HomeController.swift in Sources */,
 				353729A02BA9509300915455 /* HomeViewProtocols.swift in Sources */,
 				3537299D2BA904EB00915455 /* SearchViewController.swift in Sources */,
+				353729A72BA956B800915455 /* Date+Extension.swift in Sources */,
 				350A5D9D2BA8B5ED00324FD4 /* WeatherViewModel.swift in Sources */,
 				351E16B92BA8E10D009D5DA0 /* DescriptionListView.swift in Sources */,
 				350A5D882BA8B32500324FD4 /* AppDelegate.swift in Sources */,
@@ -274,10 +284,12 @@
 				351E16BB2BA8E1F1009D5DA0 /* BottomView.swift in Sources */,
 				350A5DA02BA8B77400324FD4 /* UIView+Extension.swift in Sources */,
 				350A5D8A2BA8B32500324FD4 /* SceneDelegate.swift in Sources */,
+				353729A92BA956EE00915455 /* NetworkService.swift in Sources */,
 				350A5DA52BA8C5D600324FD4 /* CGFloat+Extension.swift in Sources */,
 				350A5DA32BA8B9D400324FD4 /* Support.swift in Sources */,
 				351E16B32BA8E02C009D5DA0 /* TopView.swift in Sources */,
 				353729A52BA955BF00915455 /* Weather.swift in Sources */,
+				353729AB2BA9590700915455 /* City.swift in Sources */,
 				350A5DAA2BA8CFC200324FD4 /* UIColor+Extension.swift in Sources */,
 				351E16B52BA8E0A1009D5DA0 /* TitleView.swift in Sources */,
 				353729982BA8F47700915455 /* DescriptionCell.swift in Sources */,
