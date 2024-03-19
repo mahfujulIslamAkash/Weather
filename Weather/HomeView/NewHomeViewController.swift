@@ -97,32 +97,36 @@ class NewHomeViewController: UIViewController {
         scrollStackViewContainer.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         topView.delegate = self
         
-        
-//        getLocation()
-        
-        
-    }
-    override func viewDidAppear(_ animated: Bool) {
+//        refreshController.beginRefreshing()
         getLocation()
+        
+        
     }
+    
     override func viewIsAppearing(_ animated: Bool) {
-        refreshController.beginRefreshing()
+        
+        if cityInformation == nil{
+            refreshController.beginRefreshing()
+            getLocation()
+        }
     }
     
     @objc func pulledRefresh(){
         getLocation()
     }
     func getLocation() {
-        
-        
-        
         switch locationManger.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManger = CLLocationManager()
             locationManger.delegate = self
             locationManger.desiredAccuracy = kCLLocationAccuracyBest
             locationManger.requestLocation()
-            
+        case .notDetermined, .denied, .restricted:
+            showAlertMessage(title: "Permission need", message: "Go to settings page!!!", completion: {(done) in
+                if done{
+                    UIApplication.shared.open(URL(string: "App-prefs:LOCATION_SERVICES")!)
+                }
+            })
         default:
             locationManger.delegate = self
             locationManger.requestWhenInUseAuthorization()
@@ -158,8 +162,14 @@ class NewHomeViewController: UIViewController {
     }
     
     func updateCityInfo(){
-        titleView.cityName.text = cityInformation.name
-        titleView.dateLabel.text = Date.getTodaysDate()
+        if cityInformation == nil{
+            getLocation()
+        }
+        else{
+            titleView.cityName.text = cityInformation.name
+            titleView.dateLabel.text = Date.getTodaysDate()
+        }
+        
     }
     func updateMainViewInfo(){
         weatherMainView.mainWeatherImageView.image = UIImage(named: weatherResult.current.weather[0].icon)

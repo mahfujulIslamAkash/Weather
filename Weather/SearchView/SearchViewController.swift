@@ -33,6 +33,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         searchBar?.delegate = self
         searchResultsTable?.delegate = self
         searchResultsTable?.dataSource = self
+        
+        searchBar.searchTextField.textColor = .black.withAlphaComponent(0.5)
     }
     
     // This method declares that whenever the text in the searchbar is change to also update
@@ -86,6 +88,7 @@ extension SearchViewController: UITableViewDataSource {
         //Set the content of the cell to our searchResult data
         cell.textLabel?.text = searchResult.title
         cell.detailTextLabel?.text = searchResult.subtitle
+        cell.backgroundColor = .clear
         return cell
     }
 }

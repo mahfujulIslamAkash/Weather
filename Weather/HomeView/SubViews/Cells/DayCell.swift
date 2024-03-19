@@ -11,10 +11,10 @@ class DayCell: UICollectionViewCell {
     let time: UILabel = {
         let title = UILabel()
         title.text = "12:00"
-        title.font = UIFont(name: "Inter-Regular", size: .init(w: 7))
-//        title.textColor = UIColor(hexString: "303345")
+        title.font = UIFont(name: "Inter-Bold", size: .init(w: 7))
         title.textColor = .white
-        title.shadowColor = UIColor.black.withAlphaComponent(0.1)
+//        title.shadowColor = UIColor.black.withAlphaComponent(1)
+        title.layer.shadowRadius = 50
         return title
     }()
     
@@ -29,10 +29,10 @@ class DayCell: UICollectionViewCell {
     let tmp: UILabel = {
         let title = UILabel()
         title.text = "12°"
-        title.font = UIFont(name: "Inter-Regular", size: .init(w: 7))
-//        title.textColor = UIColor(hexString: "303345")
+        title.font = UIFont(name: "Inter-Bold", size: .init(w: 7))
         title.textColor = .white
-        title.shadowColor = UIColor.black.withAlphaComponent(0.1)
+//        title.shadowColor = UIColor.black.withAlphaComponent(1)
+        title.layer.shadowRadius = 50
         return title
     }()
     
@@ -45,7 +45,7 @@ class DayCell: UICollectionViewCell {
     }()
     
     let blurEffectView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.layer.cornerRadius = 20
         blurEffectView.clipsToBounds = true

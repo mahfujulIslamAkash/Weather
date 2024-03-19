@@ -142,9 +142,9 @@
 		350A5DA12BA8B9BE00324FD4 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
-				350A5D9E2BA8B75D00324FD4 /* Extensions */,
 				350A5DA22BA8B9D400324FD4 /* Support.swift */,
 				353729A82BA956EE00915455 /* NetworkService.swift */,
+				350A5D9E2BA8B75D00324FD4 /* Extensions */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
