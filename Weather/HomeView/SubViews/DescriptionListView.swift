@@ -19,6 +19,7 @@ class DescriptionListView: UIView {
         col.dataSource = self
         col.contentInset = UIEdgeInsets(top: .init(h: 15), left: .init(w: 15), bottom: .init(h: 15), right: .init(w: 15))
         col.backgroundColor = .clear
+        col.isUserInteractionEnabled = false
         return col
     }()
     

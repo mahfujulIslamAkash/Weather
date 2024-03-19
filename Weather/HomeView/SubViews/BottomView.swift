@@ -34,6 +34,7 @@ class BottomView: UIView {
         col.dataSource = self
         col.contentInset = UIEdgeInsets(top: .init(h: 0), left: .init(w: 15), bottom: .init(h: 0), right: .init(w: 15))
         col.backgroundColor = .clear
+        col.showsHorizontalScrollIndicator = false
         return col
     }()
     
