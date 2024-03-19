@@ -51,7 +51,7 @@ class WeatherMainTitleView: UIView {
         addSubview(stack)
         
         
-        mainWeatherImageView.anchorView(top: topAnchor, left: leftAnchor,bottom: bottomAnchor, paddingLeft: .init(w: 15), width: .init(w: 83), height: .init(h: 80))
+        mainWeatherImageView.anchorView(top: topAnchor, left: leftAnchor,bottom: bottomAnchor, paddingLeft: .init(w: 15), width: .init(w: 83))
         
         stack.anchorView(left: mainWeatherImageView.rightAnchor, paddingLeft: .init(w: 10), height: .init(h: 62))
         stack.centerY(inView: self)

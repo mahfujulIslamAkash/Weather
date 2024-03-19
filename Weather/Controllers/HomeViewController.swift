@@ -121,11 +121,11 @@ class HomeViewController: UIViewController {
             locationManger.delegate = self
             locationManger.startUpdatingLocation()
 
-        case .notDetermined, .denied, .restricted:
+        case .denied, .restricted:
             showAlertForPermission()
         default:
             locationManger.delegate = self
-            locationManger.startUpdatingLocation()
+//            locationManger.startUpdatingLocation()
             locationManger.requestWhenInUseAuthorization()
             locationManger.requestAlwaysAuthorization()
             print("error, no permission")
@@ -253,7 +253,7 @@ extension HomeViewController: CLLocationManagerDelegate{
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways{
-            manager.requestLocation()
+            manager.startUpdatingLocation()
         }
         else{
             showAlertForPermission()
