@@ -12,8 +12,9 @@ class DayCell: UICollectionViewCell {
         let title = UILabel()
         title.text = "12:00"
         title.font = UIFont(name: "Inter-Regular", size: .init(w: 7))
-        title.textColor = UIColor(hexString: "303345")
-        title.textColor = .black
+//        title.textColor = UIColor(hexString: "303345")
+        title.textColor = .white
+        title.shadowColor = UIColor.black.withAlphaComponent(0.1)
         return title
     }()
     
@@ -21,6 +22,7 @@ class DayCell: UICollectionViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.image = UIImage(named: "rain")
+        image.layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
         return image
     }()
     
@@ -28,8 +30,9 @@ class DayCell: UICollectionViewCell {
         let title = UILabel()
         title.text = "12°"
         title.font = UIFont(name: "Inter-Regular", size: .init(w: 7))
-        title.textColor = UIColor(hexString: "303345")
-        title.textColor = .black
+//        title.textColor = UIColor(hexString: "303345")
+        title.textColor = .white
+        title.shadowColor = UIColor.black.withAlphaComponent(0.1)
         return title
     }()
     
@@ -41,18 +44,29 @@ class DayCell: UICollectionViewCell {
         return stack
     }()
     
+    let blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.layer.cornerRadius = 20
+        blurEffectView.clipsToBounds = true
+        return blurEffectView
+    }()
+    
     func update(daily: Daily){
-        contentView.layer.borderWidth = 0.5
+
         contentView.layer.cornerRadius = 16
-        
+        contentView.backgroundColor = .clear
+        contentView.addSubview(blurEffectView)
         contentView.addSubview(stackView)
-//        stackView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
+        
         stackView.centerX(inView: self)
         stackView.centerY(inView: self)
         
         stackView.addArrangedSubview(time)
         stackView.addArrangedSubview(icon)
         stackView.addArrangedSubview(tmp)
+        
+        blurEffectView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
         
         let day = daily.dt
         let date = Date(timeIntervalSince1970: Double(day))

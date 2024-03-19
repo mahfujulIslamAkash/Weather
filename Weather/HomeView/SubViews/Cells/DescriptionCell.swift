@@ -33,15 +33,28 @@ class DescriptionCell: UICollectionViewCell {
         title.textColor = .black
         return title
     }()
+    let blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemMaterial)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.layer.cornerRadius = 20
+        blurEffectView.clipsToBounds = true
+        return blurEffectView
+    }()
     
     func update(imageIcon: String, title: String, value: String){
-        contentView.layer.borderWidth = 0.5
+        contentView.backgroundColor = .clear
+//        contentView.layer.borderWidth = 0.5
         contentView.layer.cornerRadius = 15
+        contentView.addSubview(blurEffectView)
         contentView.addSubview(imageView)
         contentView.addSubview(cellName)
         contentView.addSubview(cellValue)
         
-//        imageView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, paddingLeft: .init(w: 0),paddingBottom: .init(h: -5), width: .init(w: 38))
+        
+        
+        
+        
+        blurEffectView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
         
         cellName.anchorView(left: contentView.leftAnchor, paddingLeft: .init(w: 15))
         cellName.centerY(inView: contentView)
