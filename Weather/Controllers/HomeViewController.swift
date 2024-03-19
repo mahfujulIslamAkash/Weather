@@ -72,13 +72,14 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    //MARK: Location Manager
+    
     var locationManger: CLLocationManager = CLLocationManager()
     
     var weatherResult: WeatherResult!
     
     var cityInformation: CityModel!{
         didSet{
-//            print("city changed")
             NetworkService.shared.setLatitude(cityInformation.lat)
             NetworkService.shared.setLongitude(cityInformation.lon)
             getWeather()
@@ -94,8 +95,12 @@ class HomeViewController: UIViewController {
         
         getLocation()
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(cameForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
         
     }
+    
     
     override func viewIsAppearing(_ animated: Bool) {
         if Connectivity.isConnectedToInternet{
@@ -111,7 +116,13 @@ class HomeViewController: UIViewController {
     }
     
     @objc func pulledRefresh(){
-        getLocation()
+        if Connectivity.isConnectedToInternet{
+            getLocation()
+        }
+        else{
+            showAlertForInternet()
+        }
+        
     }
     
     func getLocation() {
@@ -138,7 +149,6 @@ class HomeViewController: UIViewController {
     func getWeather(){
         if Connectivity.isConnectedToInternet{
             NetworkService.shared.getWeather(onSuccess: { [self] (result) in
-//                print(result.current)
                 weatherResult = result
                 DispatchQueue.main.async { [self] in
                     UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: { [self] in
@@ -188,6 +198,13 @@ extension HomeViewController{
     }
     func updateBottomViewInfo(){
         bottomView.updateData(weatherData: weatherResult)
+    }
+    @objc func cameForeground() {
+        print("cameForeground")
+        if !Connectivity.isConnectedToInternet{
+            showAlertForInternet()
+        }
+        
     }
 }
 
