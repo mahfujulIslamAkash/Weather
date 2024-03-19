@@ -19,4 +19,25 @@ extension UIViewController{
         alertMessagePopUpBox.addAction(okButton)
         self.present(alertMessagePopUpBox, animated: true)
     }
+    func showAlertForPermission(){
+        showAlertMessage(title: AlertMessage.permission.title, message: AlertMessage.permission.description, completion: { (done) in
+            if done{
+                UIApplication.shared.open(URL(string: "App-prefs:LOCATION_SERVICES")!)
+            }
+        })
+    }
+    
+    func showAlertForInternet(){
+        showAlertMessage(title: AlertMessage.noInternet.title, message: AlertMessage.noInternet.description, completion: { [self](done) in
+            
+            if done{
+                if !Connectivity.isConnectedToInternet{
+                    showAlertForInternet()
+                }
+            }
+        })
+    }
+    
 }
+
+

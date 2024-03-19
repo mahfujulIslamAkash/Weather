@@ -37,6 +37,8 @@
 		353729B32BA9D94900915455 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729B22BA9D94900915455 /* Assets.swift */; };
 		353729B52BA9DC6900915455 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729B42BA9DC6900915455 /* Forecast.swift */; };
 		353729B82BA9E32A00915455 /* Refectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729B72BA9E32A00915455 /* Refectors.swift */; };
+		353729C12BA9F27600915455 /* Reachability+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729C02BA9F27600915455 /* Reachability+Extension.swift */; };
+		353729C42BA9F3A800915455 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 353729C32BA9F3A800915455 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,7 @@
 		353729B22BA9D94900915455 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		353729B42BA9DC6900915455 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		353729B72BA9E32A00915455 /* Refectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refectors.swift; sourceTree = "<group>"; };
+		353729C02BA9F27600915455 /* Reachability+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reachability+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353729C42BA9F3A800915455 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +142,7 @@
 				350A5DA92BA8CFC200324FD4 /* UIColor+Extension.swift */,
 				353729A62BA956B800915455 /* Date+Extension.swift */,
 				353729AC2BA99D8800915455 /* UIController+Extension.swift */,
+				353729C02BA9F27600915455 /* Reachability+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -259,6 +264,9 @@
 			dependencies = (
 			);
 			name = Weather;
+			packageProductDependencies = (
+				353729C32BA9F3A800915455 /* Alamofire */,
+			);
 			productName = Weather;
 			productReference = 350A5D842BA8B32500324FD4 /* Weather.app */;
 			productType = "com.apple.product-type.application";
@@ -287,6 +295,9 @@
 				Base,
 			);
 			mainGroup = 350A5D7B2BA8B32500324FD4;
+			packageReferences = (
+				353729C22BA9F3A800915455 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 350A5D852BA8B32500324FD4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -340,6 +351,7 @@
 				353729AB2BA9590700915455 /* City.swift in Sources */,
 				350A5DAA2BA8CFC200324FD4 /* UIColor+Extension.swift in Sources */,
 				351E16B52BA8E0A1009D5DA0 /* TitleView.swift in Sources */,
+				353729C12BA9F27600915455 /* Reachability+Extension.swift in Sources */,
 				353729982BA8F47700915455 /* TodayForecastCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,6 +575,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		353729C22BA9F3A800915455 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		353729C32BA9F3A800915455 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 353729C22BA9F3A800915455 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 350A5D7C2BA8B32500324FD4 /* Project object */;
 }

@@ -10,8 +10,10 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
     
+    //MARK: UI Elements
     lazy var refreshController:  UIRefreshControl = {
         let controller = UIRefreshControl()
+        controller.tintColor = .black
         controller.addTarget(self, action: #selector(pulledRefresh), for: .valueChanged)
         return controller
     }()
@@ -62,7 +64,6 @@ class HomeViewController: UIViewController {
     let descriptionView: DescriptionListView = {
         let view = DescriptionListView()
         view.heightAnchor.constraint(equalToConstant: .init(h: 154)).isActive = true
-        //        view.widthAnchor.constraint(equalToConstant: .init(w: 414)).isActive = true
         return view
     }()
     let bottomView: BottomView = {
@@ -77,8 +78,6 @@ class HomeViewController: UIViewController {
     
     var cityInformation: CityModel!{
         didSet{
-            //reload view
-//            refreshController.endRefreshing()
             print("city changed")
             NetworkService.shared.setLatitude(cityInformation.lat)
             NetworkService.shared.setLongitude(cityInformation.lon)
@@ -93,23 +92,28 @@ class HomeViewController: UIViewController {
         scrollStackViewContainer.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         topView.delegate = self
         
-//        refreshController.beginRefreshing()
         getLocation()
         
         
     }
     
     override func viewIsAppearing(_ animated: Bool) {
-        
-        if cityInformation == nil{
-            refreshController.beginRefreshing()
-            getLocation()
+        if Connectivity.isConnectedToInternet{
+            if cityInformation == nil{
+                refreshController.beginRefreshing()
+                getLocation()
+            }
         }
+        else{
+            showAlertForInternet()
+        }
+        
     }
     
     @objc func pulledRefresh(){
         getLocation()
     }
+    
     func getLocation() {
         switch locationManger.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
@@ -118,11 +122,7 @@ class HomeViewController: UIViewController {
             locationManger.desiredAccuracy = kCLLocationAccuracyBest
             locationManger.requestLocation()
         case .notDetermined, .denied, .restricted:
-            showAlertMessage(title: "Permission need", message: "Go to settings page!!!", completion: {(done) in
-                if done{
-                    UIApplication.shared.open(URL(string: "App-prefs:LOCATION_SERVICES")!)
-                }
-            })
+            showAlertForPermission()
         default:
             locationManger.delegate = self
             locationManger.requestWhenInUseAuthorization()
@@ -135,26 +135,32 @@ class HomeViewController: UIViewController {
     }
     
     func getWeather(){
-        NetworkService.shared.getWeather(onSuccess: { [self] (result) in
-            print(result.current)
-            weatherResult = result
-            DispatchQueue.main.async { [self] in
-                UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: { [self] in
-                    updateCityInfo()
-                    updateMainViewInfo()
-                    updateDescriptionViewInfo()
-                    updateBottomViewInfo()
-                }, completion: { [self]_ in 
-                    refreshController.endRefreshing()
-                })
+        if Connectivity.isConnectedToInternet{
+            NetworkService.shared.getWeather(onSuccess: { [self] (result) in
+                print(result.current)
+                weatherResult = result
+                DispatchQueue.main.async { [self] in
+                    UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: { [self] in
+                        updateCityInfo()
+                        updateMainViewInfo()
+                        updateDescriptionViewInfo()
+                        updateBottomViewInfo()
+                    }, completion: { [self]_ in
+                        refreshController.endRefreshing()
+                    })
+                    
+                }
                 
+                
+            }) { [self] (errorMessage) in
+                debugPrint(errorMessage)
+                refreshController.endRefreshing()
             }
-            
-            
-        }) { [self] (errorMessage) in
-            debugPrint(errorMessage)
-            refreshController.endRefreshing()
         }
+        else{
+            showAlertForInternet()
+        }
+        
     }
     
     func updateCityInfo(){
@@ -237,11 +243,7 @@ extension HomeViewController: CLLocationManagerDelegate{
             manager.requestLocation()
         }
         else{
-            showAlertMessage(title: "Permission need", message: "Go to settings page!!!", completion: {(done) in
-                if done{
-                    UIApplication.shared.open(URL(string: "App-prefs:LOCATION_SERVICES")!)
-                }
-            })
+            showAlertForPermission()
         }
         
     }
