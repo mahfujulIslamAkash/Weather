@@ -29,7 +29,7 @@ class BottomView: UIView {
         layout.scrollDirection = .horizontal
         let col = UICollectionView(frame: .zero, collectionViewLayout: layout)
         col.translatesAutoresizingMaskIntoConstraints = false
-        col.register(DayCell.self, forCellWithReuseIdentifier: "day")
+        col.register(WeeklyForecastCell.self, forCellWithReuseIdentifier: "day")
         col.delegate = self
         col.dataSource = self
         col.contentInset = UIEdgeInsets(top: .init(h: 0), left: .init(w: 15), bottom: .init(h: 0), right: .init(w: 15))
@@ -69,7 +69,7 @@ extension BottomView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! DayCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "day", for: indexPath) as! WeeklyForecastCell
         cell.update(daily: daily[indexPath.row])
         return cell
     }

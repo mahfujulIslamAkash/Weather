@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DescriptionCell: UICollectionViewCell {
+class TodayForecastCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "rain")

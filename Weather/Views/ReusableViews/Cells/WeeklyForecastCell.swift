@@ -7,18 +7,17 @@
 
 import UIKit
 
-class DayCell: UICollectionViewCell {
-    let time: UILabel = {
+class WeeklyForecastCell: UICollectionViewCell {
+    let dayOfMonth: UILabel = {
         let title = UILabel()
         title.text = "12:00"
         title.font = UIFont(name: "Inter-Bold", size: .init(w: 7))
         title.textColor = .white
-//        title.shadowColor = UIColor.black.withAlphaComponent(1)
         title.layer.shadowRadius = 50
         return title
     }()
     
-    let icon: UIImageView = {
+    let weatherIcon: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.image = UIImage(named: "rain")
@@ -26,17 +25,16 @@ class DayCell: UICollectionViewCell {
         return image
     }()
     
-    let tmp: UILabel = {
+    let averageTemperature: UILabel = {
         let title = UILabel()
         title.text = "12°"
         title.font = UIFont(name: "Inter-Bold", size: .init(w: 7))
         title.textColor = .white
-//        title.shadowColor = UIColor.black.withAlphaComponent(1)
         title.layer.shadowRadius = 50
         return title
     }()
     
-    let stackView: UIStackView = {
+    let verticalStackView: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .center
         stack.axis = .vertical
@@ -57,43 +55,24 @@ class DayCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.backgroundColor = .clear
         contentView.addSubview(blurEffectView)
-        contentView.addSubview(stackView)
+        contentView.addSubview(verticalStackView)
         
-        stackView.centerX(inView: self)
-        stackView.centerY(inView: self)
+        verticalStackView.centerX(inView: self)
+        verticalStackView.centerY(inView: self)
         
-        stackView.addArrangedSubview(time)
-        stackView.addArrangedSubview(icon)
-        stackView.addArrangedSubview(tmp)
+        verticalStackView.addArrangedSubview(dayOfMonth)
+        verticalStackView.addArrangedSubview(weatherIcon)
+        verticalStackView.addArrangedSubview(averageTemperature)
         
         blurEffectView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
         
-        let day = daily.dt
-        let date = Date(timeIntervalSince1970: Double(day))
-        let components = date.get(.day, .month, .year)
-        guard let dayNumber = components.day else{
-            return
-        }
-        let dayString = "\(dayNumber)"
-        
-//        let date = Date(timeIntervalSince1970: Double(daily.dt))
-//        let hourString = Date.getHourFrom(date: date)
-        time.text = dayString
-        
-        icon.image = UIImage(named: daily.weather[0].icon)
-        tmp.text = "\(Int(daily.temp.day))°\(NetworkService.shared.defaultC ? "C" : "F")"
         
         
+        dayOfMonth.text = Date.dayOfMonthFromDt(dt: daily.dt)
         
+        weatherIcon.image = UIImage(named: daily.weather[0].icon)
+        averageTemperature.text = "\(Int(daily.temp.day))°\(NetworkService.shared.defaultC ? "C" : "F")"
         
-//        time.anchorView(left: contentView.leftAnchor, paddingLeft: .init(w: 11))
-//        imageView.centerY(inView: contentView)
-//        
-//        cellName.anchorView(left: imageView.rightAnchor, paddingLeft: .init(w: 8))
-//        cellName.centerY(inView: contentView)
-//        
-//        cellValue.anchorView(right: contentView.rightAnchor, paddingRight: .init(w: 11))
-//        cellValue.centerY(inView: contentView)
     }
     
 }

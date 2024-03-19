@@ -14,7 +14,7 @@ class DescriptionListView: UIView {
         layout.scrollDirection = .vertical
         let col = UICollectionView(frame: .zero, collectionViewLayout: layout)
         col.translatesAutoresizingMaskIntoConstraints = false
-        col.register(DescriptionCell.self, forCellWithReuseIdentifier: "cell")
+        col.register(TodayForecastCell.self, forCellWithReuseIdentifier: "cell")
         col.delegate = self
         col.dataSource = self
         col.contentInset = UIEdgeInsets(top: .init(h: 15), left: .init(w: 15), bottom: .init(h: 15), right: .init(w: 15))
@@ -53,7 +53,7 @@ extension DescriptionListView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! DescriptionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TodayForecastCell
         cell.update(forecasts[indexPath.row])
         return cell
     }
