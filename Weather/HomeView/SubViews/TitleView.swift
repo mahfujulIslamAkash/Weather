@@ -41,7 +41,7 @@ class TitleView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .blue
+//        backgroundColor = .blue
         addSubview(topLabelStack)
         topLabelStack.addArrangedSubview(cityName)
         topLabelStack.addArrangedSubview(dateLabel)

@@ -9,6 +9,12 @@ import UIKit
 
 class NewHomeViewController: UIViewController {
 
+    lazy var refreshController:  UIRefreshControl = {
+        let controller = UIRefreshControl()
+        controller.addTarget(self, action: #selector(pulledRefresh), for: .valueChanged)
+        return controller
+    }()
+    
     let topView = TopView()
     let titleView = TitleView()
     let weatherMainView = WeatherMainTitleView()
@@ -18,11 +24,17 @@ class NewHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        view.addSubview(refreshController)
         view.addSubview(topView)
         view.addSubview(titleView)
         view.addSubview(weatherMainView)
         view.addSubview(descriptionView)
         view.addSubview(bottomView)
+        
+        topView.delegate = self
+        
+//        refreshController.centerX(inView: view)
+//        refreshController.centerY(inView: view)
         
         topView.anchorView(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 48))
         
@@ -38,15 +50,18 @@ class NewHomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func pulledRefresh(){
+        
     }
-    */
 
+}
+
+extension NewHomeViewController: HomeViewProtocols{
+    func tappedOnSearch() {
+        //go to the city choice
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "cityChoiseID") as! SearchViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
 }

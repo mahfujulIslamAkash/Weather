@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-LY-qnr">
-                                <rect key="frame" x="0.0" y="59.000000000000014" width="393" height="100.33333333333333"/>
+                                <rect key="frame" x="0.0" y="59.000000000000021" width="393" height="100.33333333333329"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="297" translatesAutoresizingMaskIntoConstraints="NO" id="k3V-yd-Oq7">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
@@ -91,20 +91,63 @@
         <!--New Home View Controller-->
         <scene sceneID="UbR-53-908">
             <objects>
-                <viewController id="Wh0-MH-MbN" customClass="NewHomeViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewID" id="Wh0-MH-MbN" customClass="NewHomeViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SjI-Qz-AiK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appBackground" translatesAutoresizingMaskIntoConstraints="NO" id="fgd-PH-7aE">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="noz-Te-hbv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fgd-PH-7aE" firstAttribute="leading" secondItem="SjI-Qz-AiK" secondAttribute="leading" id="9Ms-X0-2Y4"/>
+                            <constraint firstItem="fgd-PH-7aE" firstAttribute="trailing" secondItem="noz-Te-hbv" secondAttribute="trailing" id="Qig-C3-luI"/>
+                            <constraint firstAttribute="bottom" secondItem="fgd-PH-7aE" secondAttribute="bottom" id="bH7-Nc-USQ"/>
+                            <constraint firstItem="fgd-PH-7aE" firstAttribute="top" secondItem="SjI-Qz-AiK" secondAttribute="top" id="uh1-7h-wd6"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpE-BH-pW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2430" y="-95"/>
+            <point key="canvasLocation" x="2429.770992366412" y="-95.070422535211279"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="h2f-Rh-OIe">
+            <objects>
+                <viewController storyboardIdentifier="cityChoiseID" id="7xh-zZ-hpy" customClass="SearchViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hv3-TX-3g5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IHl-Ze-uDY">
+                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z8Z-xc-cpy">
+                                <rect key="frame" x="0.0" y="44" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="g1G-ZD-uun"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="Z8Z-xc-cpy" id="Jo4-sq-nKf"/>
+                        <outlet property="searchResultsTable" destination="IHl-Ze-uDY" id="CjR-HZ-9dF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k1s-IF-53R" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3410" y="-95"/>
         </scene>
     </scenes>
     <resources>
+        <image name="appBackground" width="218" height="471"/>
         <image name="searchIcon" width="24" height="24"/>
         <image name="settingsIcon" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">

@@ -17,6 +17,8 @@ class DescriptionCell: UICollectionViewCell {
     let cellName: UILabel = {
         let title = UILabel()
         title.text = "Rain"
+        title.font = UIFont(name: "Inter-Regular", size: .init(w: 7))
+        title.textColor = UIColor(hexString: "303345")
         title.textColor = .black
         return title
     }()
@@ -24,12 +26,15 @@ class DescriptionCell: UICollectionViewCell {
     let cellValue: UILabel = {
         let title = UILabel()
         title.text = "22cm"
+        title.font = UIFont(name: "Inter-Regular", size: .init(w: 7))
+        title.textColor = UIColor(hexString: "303345")
         title.textColor = .black
         return title
     }()
     
     func update(){
         contentView.layer.borderWidth = 0.5
+        contentView.layer.cornerRadius = 15
         contentView.addSubview(imageView)
         contentView.addSubview(cellName)
         contentView.addSubview(cellValue)

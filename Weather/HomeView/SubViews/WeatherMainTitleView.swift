@@ -39,7 +39,7 @@ class WeatherMainTitleView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .brown
+//        backgroundColor = .brown
         addSubview(mainWeatherImageView)
         addSubview(temparatureLabel)
         addSubview(currentWeatherLabel)
