@@ -30,72 +30,10 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "tappedOnSearch()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0BD07578-A83D-4B7E-80F9-C28572BCE0EA - 3664576325075de6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Weather.NewHomeViewController.tappedOnSearch() -&gt; ()"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/appnapmahfuj/Desktop/Practices/Xcodes/Weather/Weather/HomeView/NewHomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "256">
-               </Location>
-               <Location
-                  uuid = "0BD07578-A83D-4B7E-80F9-C28572BCE0EA - 3664576325075de6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Weather.NewHomeViewController.tappedOnSearch() -&gt; ()"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/appnapmahfuj/Desktop/Practices/Xcodes/Weather/Weather/HomeView/NewHomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  uuid = "0BD07578-A83D-4B7E-80F9-C28572BCE0EA - 6687b1ebc47057a0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Weather.NewHomeViewController.updateMainViewInfo() -&gt; ()"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/appnapmahfuj/Desktop/Practices/Xcodes/Weather/Weather/HomeView/NewHomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "1444">
-               </Location>
-               <Location
-                  uuid = "0BD07578-A83D-4B7E-80F9-C28572BCE0EA - 3664576325075942"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Weather.NewHomeViewController.tappedOnSearch() -&gt; ()"
-                  moduleName = "Weather"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/appnapmahfuj/Desktop/Practices/Xcodes/Weather/Weather/HomeView/NewHomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "52">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -150,14 +88,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1DCE8AE3-7B4A-45F5-A92D-900C36F91F1B"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "getLocation()"
             landmarkType = "7">
          </BreakpointContent>
@@ -172,8 +110,8 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "locationManagerDidChangeAuthorization(_:)"
             landmarkType = "7">
             <Locations>
@@ -258,49 +196,129 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "701E628C-FE76-470E-ACAF-4346E2DA6B22"
+            uuid = "C1923174-6D50-4B2F-BAFB-FC577977F9D7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "pulledRefresh()"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2715A84-0808-4C27-9557-FA6CDFC960ED"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/HomeView/NewHomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "792A06A5-4067-42FC-B457-C96C312017AA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/HomeView/NewHomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A842EEF-12B0-49D2-8B62-158FAC911C2F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/HomeView/NewHomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B44A4B7-026F-4ED7-A839-18F5A688B0D1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/HomeView/NewHomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "cityInformation"
+            landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "701E628C-FE76-470E-ACAF-4346E2DA6B22 - dbd2a457578095b1"
+                  uuid = "1B44A4B7-026F-4ED7-A839-18F5A688B0D1 - 101213f8d464dd78"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Weather.NewHomeViewController.viewDidLoad() -&gt; ()"
+                  symbolName = "Weather.NewHomeViewController.cityInformation.didset : Swift.Optional&lt;Weather.CityModel&gt;"
                   moduleName = "Weather"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/appnapmahfuj/Desktop/Practices/Xcodes/Weather/Weather/HomeView/NewHomeViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "114"
-                  endingLineNumber = "114"
-                  offsetFromSymbolStart = "1812">
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "448">
                </Location>
                <Location
-                  uuid = "701E628C-FE76-470E-ACAF-4346E2DA6B22 - 22998569574b12a2"
+                  uuid = "1B44A4B7-026F-4ED7-A839-18F5A688B0D1 - 101213f8d464dd78"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Weather.NewHomeViewController.pulledRefresh() -&gt; ()"
+                  symbolName = "Weather.NewHomeViewController.cityInformation.didset : Swift.Optional&lt;Weather.CityModel&gt;"
                   moduleName = "Weather"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/appnapmahfuj/Desktop/Practices/Xcodes/Weather/Weather/HomeView/NewHomeViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "12">
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "124">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D9DF28D-B7CC-40B1-99A3-C8B58CEFC7D1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/HomeView/NewHomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "getLocation()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

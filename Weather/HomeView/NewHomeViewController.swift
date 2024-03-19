@@ -25,6 +25,7 @@ class NewHomeViewController: UIViewController {
         view.layer.borderWidth = 0.5
         //        view.backgroundColor = .green
         view.alwaysBounceVertical = true
+        view.showsVerticalScrollIndicator = false
         //        view.isUserInteractionEnabled = true
         return view
     }()
@@ -81,6 +82,7 @@ class NewHomeViewController: UIViewController {
     var cityInformation: CityModel!{
         didSet{
             //reload view
+//            refreshController.endRefreshing()
             print("city changed")
             NetworkService.shared.setLatitude(cityInformation.lat)
             NetworkService.shared.setLongitude(cityInformation.lon)
@@ -96,17 +98,23 @@ class NewHomeViewController: UIViewController {
         topView.delegate = self
         
         
+//        getLocation()
+        
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
         getLocation()
-        
-        
+    }
+    override func viewIsAppearing(_ animated: Bool) {
+        refreshController.beginRefreshing()
     }
     
     @objc func pulledRefresh(){
-        
         getLocation()
-        refreshController.endRefreshing()
     }
     func getLocation() {
+        
+        
         
         switch locationManger.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
@@ -136,13 +144,16 @@ class NewHomeViewController: UIViewController {
                     updateMainViewInfo()
                     updateDescriptionViewInfo()
                     updateBottomViewInfo()
-                }, completion: nil)
+                }, completion: { [self]_ in 
+                    refreshController.endRefreshing()
+                })
                 
             }
             
             
-        }) { (errorMessage) in
+        }) { [self] (errorMessage) in
             debugPrint(errorMessage)
+            refreshController.endRefreshing()
         }
     }
     
@@ -197,6 +208,12 @@ extension NewHomeViewController: CLLocationManagerDelegate{
                         let placemark = placemarks[0]
                         if let city = placemark.locality {
                             cityInformation = CityModel(name: city, lat: latitude, lon: longitude)
+                        }
+                        else{
+                            if let cityName = placemark.name {
+                                cityInformation = CityModel(name: cityName, lat: latitude, lon: longitude)
+                            }
+                            
                         }
                     }
                 }

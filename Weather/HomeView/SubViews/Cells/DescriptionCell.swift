@@ -34,7 +34,7 @@ class DescriptionCell: UICollectionViewCell {
         return title
     }()
     let blurEffectView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .systemMaterial)
+        let blurEffect = UIBlurEffect(style: .extraLight)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.layer.cornerRadius = 20
         blurEffectView.clipsToBounds = true
