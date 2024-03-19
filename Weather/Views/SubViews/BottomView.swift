@@ -75,7 +75,7 @@ extension BottomView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.height-CGFloat(h: 15)
+        let height = collectionView.height-CGFloat(h: 5)
         return CGSize(width: height/2, height: height)
     }
 }

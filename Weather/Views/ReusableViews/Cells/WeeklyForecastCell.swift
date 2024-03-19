@@ -14,6 +14,7 @@ class WeeklyForecastCell: UICollectionViewCell {
         title.font = UIFont(name: "Inter-Bold", size: .init(w: 7))
         title.textColor = .white
         title.layer.shadowRadius = 50
+        title.textAlignment = .center
         return title
     }()
     
@@ -31,28 +32,28 @@ class WeeklyForecastCell: UICollectionViewCell {
         title.font = UIFont(name: "Inter-Bold", size: .init(w: 7))
         title.textColor = .white
         title.layer.shadowRadius = 50
+        title.textAlignment = .center
         return title
     }()
     
     let verticalStackView: UIStackView = {
         let stack = UIStackView()
-        stack.alignment = .center
+        stack.alignment = .fill
         stack.axis = .vertical
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         return stack
     }()
     
     let blurEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.layer.cornerRadius = 20
+        blurEffectView.layer.cornerRadius = .init(w: 10)
         blurEffectView.clipsToBounds = true
         return blurEffectView
     }()
     
     func update(daily: Daily){
 
-        contentView.layer.cornerRadius = 16
         contentView.backgroundColor = .clear
         contentView.addSubview(blurEffectView)
         contentView.addSubview(verticalStackView)
@@ -64,7 +65,7 @@ class WeeklyForecastCell: UICollectionViewCell {
         verticalStackView.addArrangedSubview(weatherIcon)
         verticalStackView.addArrangedSubview(averageTemperature)
         
-        blurEffectView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor)
+        blurEffectView.anchorView(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, paddingTop: .init(h: 0), paddingBottom: .init(h: 0))
         
         
         

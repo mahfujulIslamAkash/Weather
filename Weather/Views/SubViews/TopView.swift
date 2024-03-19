@@ -15,6 +15,7 @@ class TopView: UIView {
         let view = UIView()
         let searchButton = UIImageView()
         searchButton.image = Assets.shared.getSearchIcon()
+        searchButton.contentMode = .scaleAspectFit
         view.addSubview(searchButton)
         searchButton.anchorView(top: view.topAnchor, left: view.leftAnchor, paddingLeft: .init(w: 11), width: .init(w: 25), height: .init(h: 25))
         searchButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchTapped)))
