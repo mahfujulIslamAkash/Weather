@@ -12,7 +12,6 @@ class DescriptionCell: UICollectionViewCell {
         let image = UIImageView()
         image.image = UIImage(named: "rain")
         image.contentMode = .scaleAspectFill
-//        image.layer.borderWidth = 0.5
         return image
     }()
     
@@ -41,9 +40,8 @@ class DescriptionCell: UICollectionViewCell {
         return blurEffectView
     }()
     
-    func update(imageIcon: String, title: String, value: String){
+    func update(_ forecast: Forecast){
         contentView.backgroundColor = .clear
-//        contentView.layer.borderWidth = 0.5
         contentView.layer.cornerRadius = 15
         contentView.addSubview(blurEffectView)
         contentView.addSubview(imageView)
@@ -62,9 +60,9 @@ class DescriptionCell: UICollectionViewCell {
         cellValue.anchorView(right: contentView.rightAnchor, paddingRight: .init(w: 11))
         cellValue.centerY(inView: contentView)
         
-//        imageView.image = UIImage(named: imageIcon)
-        cellName.text = title
-        cellValue.text = value
+        imageView.image = UIImage(named: forecast.icon)
+        cellName.text = forecast.title
+        cellValue.text = forecast.description
     }
     
     

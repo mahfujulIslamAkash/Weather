@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class NewHomeViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     lazy var refreshController:  UIRefreshControl = {
         let controller = UIRefreshControl()
@@ -23,10 +23,8 @@ class NewHomeViewController: UIViewController {
         view.addSubview(scrollStackViewContainer)
         scrollStackViewContainer.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         view.layer.borderWidth = 0.5
-        //        view.backgroundColor = .green
         view.alwaysBounceVertical = true
         view.showsVerticalScrollIndicator = false
-        //        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -42,8 +40,6 @@ class NewHomeViewController: UIViewController {
         view.addArrangedSubview(weatherMainView)
         view.addArrangedSubview(descriptionView)
         view.addArrangedSubview(bottomView)
-        //        view.layer.borderWidth = 0.5
-        //        view.backgroundColor = .yellow
         return view
     }()
     
@@ -185,7 +181,7 @@ class NewHomeViewController: UIViewController {
     
 }
 
-extension NewHomeViewController: HomeViewProtocols{
+extension HomeViewController: HomeViewProtocols{
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
         cityInformation = CityModel(name: name, lat: lat, lon: lon)
     }
@@ -200,7 +196,7 @@ extension NewHomeViewController: HomeViewProtocols{
     
 }
 
-extension NewHomeViewController: CLLocationManagerDelegate{
+extension HomeViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             

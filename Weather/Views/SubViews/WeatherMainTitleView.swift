@@ -12,8 +12,7 @@ class WeatherMainTitleView: UIView {
     let mainWeatherImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        view.image = Support.sheard.getMainWeatherDefaultImage()
-//        view.layer.borderWidth = 0.5
+        view.image = Assets.shared.getMainWeatherDefaultImage()
         return view
     }()
     
@@ -23,8 +22,6 @@ class WeatherMainTitleView: UIView {
         degreeLabel.font = UIFont(name: "Inter-Bold", size: .init(w: 43))
         degreeLabel.textColor = UIColor(hexString: "303345")
         degreeLabel.tag = 1
-//        degreeLabel.layer.borderWidth = 0.5
-        
         return degreeLabel
     }()
     
@@ -35,7 +32,6 @@ class WeatherMainTitleView: UIView {
         currentWeather.textColor = UIColor(hexString: "303345")
         currentWeather.textAlignment = .center
         currentWeather.numberOfLines = 0
-//        currentWeather.layer.borderWidth = 0.5
         return currentWeather
     }()
     
@@ -51,10 +47,7 @@ class WeatherMainTitleView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        backgroundColor = .brown
         addSubview(mainWeatherImageView)
-//        addSubview(temparatureLabel)
-//        addSubview(currentWeatherLabel)
         addSubview(stack)
         
         
@@ -63,10 +56,6 @@ class WeatherMainTitleView: UIView {
         stack.anchorView(left: mainWeatherImageView.rightAnchor, paddingLeft: .init(w: 10), height: .init(h: 62))
         stack.centerY(inView: self)
         
-//        temparatureLabel.anchorView(top: topAnchor, left: mainWeatherImageView.rightAnchor, paddingTop: .init(h: 12), paddingLeft: .init(w: 10), height: .init(h: 52))
-//        
-//        currentWeatherLabel.anchorView(top: temparatureLabel.bottomAnchor, width: 150)
-//        currentWeatherLabel.centerX(inView: temparatureLabel)
     }
     
     required init?(coder: NSCoder) {

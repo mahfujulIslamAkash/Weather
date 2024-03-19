@@ -8,7 +8,7 @@
 import UIKit
 
 class DescriptionListView: UIView {
-    var dummyData = ["23cm", "56%", "23km/H"]
+    var forecasts = Assets.shared.forecasts
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -20,7 +20,6 @@ class DescriptionListView: UIView {
         col.contentInset = UIEdgeInsets(top: .init(h: 15), left: .init(w: 15), bottom: .init(h: 15), right: .init(w: 15))
         col.backgroundColor = .clear
         col.isUserInteractionEnabled = false
-//        col.layer.borderWidth = 0.5
         return col
     }()
     
@@ -30,7 +29,6 @@ class DescriptionListView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        backgroundColor = .cyan
         addSubview(collectionView)
         collectionView.anchorView(top: topAnchor, left: leftAnchor, bottom:  bottomAnchor, right: rightAnchor)
     }
@@ -41,11 +39,9 @@ class DescriptionListView: UIView {
     
     func updateData(weatherData: WeatherResult){
         self.weatherData = weatherData
-        dummyData = [
-            "\(weatherData.current.dew_point)cm",
-            "\(weatherData.current.humidity)%",
-            "\(weatherData.current.wind_speed)km/h"
-        ]
+        forecasts[0].description = "\(weatherData.current.dew_point)cm"
+        forecasts[1].description = "\(weatherData.current.humidity)%"
+        forecasts[2].description = "\(weatherData.current.wind_speed)km/h"
         collectionView.reloadData()
     }
 
@@ -53,21 +49,12 @@ class DescriptionListView: UIView {
 
 extension DescriptionListView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return forecasts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! DescriptionCell
-        if indexPath.row == 0{
-            cell.update(imageIcon: "rain", title: "Rain", value: dummyData[0])
-        }
-        else if indexPath.row == 1{
-            cell.update(imageIcon: "humidity", title: "Humidity", value: dummyData[1])
-        }
-        else{
-            cell.update(imageIcon: "wind", title: "Wind", value: dummyData[2])
-        }
-        
+        cell.update(forecasts[indexPath.row])
         return cell
     }
     

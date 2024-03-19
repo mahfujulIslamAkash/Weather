@@ -7,97 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Inter-Medium.otf">
-            <string>Inter-Medium</string>
-        </array>
-        <array key="Inter-Regular.otf">
-            <string>Inter-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Home View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="108" y="4"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="6NL-XS-EqC">
-            <objects>
-                <viewController id="I5c-7C-zqD" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="feb-Ry-02A">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-LY-qnr">
-                                <rect key="frame" x="0.0" y="59.000000000000014" width="393" height="100.33333333333333"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="297" translatesAutoresizingMaskIntoConstraints="NO" id="k3V-yd-Oq7">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kys-1g-0i3">
-                                                <rect key="frame" x="0.0" y="0.0" width="48" height="40"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="searchIcon"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeT-LZ-k2N">
-                                                <rect key="frame" x="345" y="0.0" width="48" height="40"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="settingsIcon"/>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="XRt-Dx-BRl"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="e4V-OU-C4s">
-                                        <rect key="frame" x="0.0" y="43" width="284" height="57.333333333333343"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholm, Sweden" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJn-5R-HUD">
-                                                <rect key="frame" x="0.0" y="0.0" width="284" height="36.333333333333336"/>
-                                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="30"/>
-                                                <color key="textColor" red="0.19215686274509802" green="0.20000000000000001" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue, Jun 30" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkp-mR-Bqm">
-                                                <rect key="frame" x="0.0" y="46.333333333333329" width="284" height="11"/>
-                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="9"/>
-                                                <color key="textColor" red="0.60392156862745094" green="0.57647058823529407" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sEh-63-2NW">
-                                <rect key="frame" x="173" y="411" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" red="0.17254901959999999" green="0.54117647059999996" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="thumbTintColor" systemColor="systemGreenColor"/>
-                            </switch>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="5Ro-Cg-cm3"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vxb-ES-WLo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1197.709923664122" y="-30.281690140845072"/>
-        </scene>
-        <!--New Home View Controller-->
         <scene sceneID="UbR-53-908">
             <objects>
-                <viewController storyboardIdentifier="homeViewID" id="Wh0-MH-MbN" customClass="NewHomeViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewID" id="Wh0-MH-MbN" customClass="HomeViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SjI-Qz-AiK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -166,13 +80,8 @@
     </scenes>
     <resources>
         <image name="appBackground" width="218" height="471"/>
-        <image name="searchIcon" width="24" height="24"/>
-        <image name="settingsIcon" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

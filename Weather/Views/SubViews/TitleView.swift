@@ -16,8 +16,6 @@ class TitleView: UIView {
         label.textColor = UIColor(hexString: "313341")
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.tag = 1
-//        label.layer.borderWidth = 0.5
         return label
     }()
     
@@ -28,8 +26,6 @@ class TitleView: UIView {
         label.textColor = UIColor(hexString: "9A938C")
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.tag = 2
-//        label.layer.borderWidth = 0.5
         return label
     }()
     
@@ -43,7 +39,6 @@ class TitleView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        backgroundColor = .blue
         addSubview(topLabelStack)
         topLabelStack.addArrangedSubview(cityName)
         topLabelStack.addArrangedSubview(dateLabel)
