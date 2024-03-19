@@ -15,9 +15,9 @@ class BottomView: UIView {
         }
     }
 
-    let title: UILabel = {
+    lazy var title: UILabel = {
         let title = UILabel()
-        title.text = "Next 7 days"
+        title.text = "Next \(daily.count) days"
         title.font = UIFont(name: "Inter-Bold", size: .init(w: 8))
         title.textColor = UIColor(hexString: "303345")
         title.textColor = .black

@@ -30,8 +30,8 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "tappedOnSearch()"
             landmarkType = "7">
             <Locations>
@@ -172,8 +172,8 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "locationManagerDidChangeAuthorization(_:)"
             landmarkType = "7">
             <Locations>

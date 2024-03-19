@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 
 class NewHomeViewController: UIViewController {
-
+    
     lazy var refreshController:  UIRefreshControl = {
         let controller = UIRefreshControl()
         controller.addTarget(self, action: #selector(pulledRefresh), for: .valueChanged)
@@ -23,9 +23,9 @@ class NewHomeViewController: UIViewController {
         view.addSubview(scrollStackViewContainer)
         scrollStackViewContainer.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         view.layer.borderWidth = 0.5
-//        view.backgroundColor = .green
+        //        view.backgroundColor = .green
         view.alwaysBounceVertical = true
-//        view.isUserInteractionEnabled = true
+        //        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -33,7 +33,7 @@ class NewHomeViewController: UIViewController {
         let view = UIStackView()
         view.axis = .vertical
         view.alignment = .fill
-//        view.distribution = .fill
+        //        view.distribution = .fill
         view.spacing = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addArrangedSubview(topView)
@@ -41,15 +41,15 @@ class NewHomeViewController: UIViewController {
         view.addArrangedSubview(weatherMainView)
         view.addArrangedSubview(descriptionView)
         view.addArrangedSubview(bottomView)
-//        view.layer.borderWidth = 0.5
-//        view.backgroundColor = .yellow
+        //        view.layer.borderWidth = 0.5
+        //        view.backgroundColor = .yellow
         return view
     }()
     
     let topView: TopView = {
         let view = TopView()
         view.heightAnchor.constraint(equalToConstant: .init(h: 25)).isActive = true
-//        view.layer.borderWidth = 0.5
+        //        view.layer.borderWidth = 0.5
         return view
     }()
     let titleView: TitleView = {
@@ -65,7 +65,7 @@ class NewHomeViewController: UIViewController {
     let descriptionView: DescriptionListView = {
         let view = DescriptionListView()
         view.heightAnchor.constraint(equalToConstant: .init(h: 154)).isActive = true
-//        view.widthAnchor.constraint(equalToConstant: .init(w: 414)).isActive = true
+        //        view.widthAnchor.constraint(equalToConstant: .init(w: 414)).isActive = true
         return view
     }()
     let bottomView: BottomView = {
@@ -107,21 +107,21 @@ class NewHomeViewController: UIViewController {
         refreshController.endRefreshing()
     }
     func getLocation() {
-
+        
         switch locationManger.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManger = CLLocationManager()
             locationManger.delegate = self
             locationManger.desiredAccuracy = kCLLocationAccuracyBest
             locationManger.requestLocation()
-        
+            
         default:
             locationManger.delegate = self
             locationManger.requestWhenInUseAuthorization()
             locationManger.requestAlwaysAuthorization()
             print("error, no permission")
         }
-
+        
         
         
     }
@@ -131,10 +131,13 @@ class NewHomeViewController: UIViewController {
             print(result.current)
             weatherResult = result
             DispatchQueue.main.async { [self] in
-                updateCityInfo()
-                updateMainViewInfo()
-                updateDescriptionViewInfo()
-                updateBottomViewInfo()
+                UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: { [self] in
+                    updateCityInfo()
+                    updateMainViewInfo()
+                    updateDescriptionViewInfo()
+                    updateBottomViewInfo()
+                }, completion: nil)
+                
             }
             
             
@@ -158,7 +161,7 @@ class NewHomeViewController: UIViewController {
     func updateBottomViewInfo(){
         bottomView.updateData(weatherData: weatherResult)
     }
-
+    
 }
 
 extension NewHomeViewController: HomeViewProtocols{

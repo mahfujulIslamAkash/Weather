@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-LY-qnr">
-                                <rect key="frame" x="0.0" y="59.000000000000021" width="393" height="100.33333333333329"/>
+                                <rect key="frame" x="0.0" y="59.000000000000014" width="393" height="100.33333333333333"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="297" translatesAutoresizingMaskIntoConstraints="NO" id="k3V-yd-Oq7">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
@@ -79,6 +79,12 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sEh-63-2NW">
+                                <rect key="frame" x="173" y="411" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" red="0.17254901959999999" green="0.54117647059999996" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="thumbTintColor" systemColor="systemGreenColor"/>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5Ro-Cg-cm3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -152,6 +158,9 @@
         <image name="settingsIcon" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
