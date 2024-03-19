@@ -19,6 +19,7 @@ class NewHomeViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(refreshController)
         view.addSubview(scrollStackViewContainer)
         scrollStackViewContainer.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         view.layer.borderWidth = 0.5
@@ -76,6 +77,7 @@ class NewHomeViewController: UIViewController {
     var locationManger: CLLocationManager = CLLocationManager()
     
     var weatherResult: WeatherResult!
+    
     var cityInformation: CityModel!{
         didSet{
             //reload view
@@ -88,37 +90,21 @@ class NewHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        view.addSubview(topView)
-//        view.addSubview(titleView)
-//        view.addSubview(weatherMainView)
-//        view.addSubview(descriptionView)
-//        view.addSubview(bottomView)
         view.addSubview(scrollView)
-//        scrollView.addSubview(scrollStackViewContainer)
         scrollView.anchorView(top: view.topAnchor, left: view.leftAnchor,bottom: view.bottomAnchor, right: view.rightAnchor)
-        
-        topView.delegate = self
         scrollStackViewContainer.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        topView.delegate = self
         
-//        topView.anchorView(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 48))
-//        
-//        titleView.anchorView(top: topView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 45))
-//        
-//        weatherMainView.anchorView(top: titleView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 88))
-//        
-//        descriptionView.anchorView(top: weatherMainView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 154))
-//        
-//        bottomView.anchorView(top: descriptionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 100))
         
         getLocation()
         
         
-        // Do any additional setup after loading the view.
     }
     
     @objc func pulledRefresh(){
         
+        getLocation()
+        refreshController.endRefreshing()
     }
     func getLocation() {
 
@@ -127,17 +113,15 @@ class NewHomeViewController: UIViewController {
             locationManger = CLLocationManager()
             locationManger.delegate = self
             locationManger.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManger.requestWhenInUseAuthorization()
             locationManger.requestLocation()
+        
         default:
             locationManger.delegate = self
             locationManger.requestWhenInUseAuthorization()
             locationManger.requestAlwaysAuthorization()
             print("error, no permission")
         }
-//        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways{
-//
-//        }
+
         
         
     }
