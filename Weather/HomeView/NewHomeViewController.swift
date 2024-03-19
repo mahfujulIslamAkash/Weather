@@ -37,18 +37,13 @@ class NewHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        view.addSubview(refreshController)
         view.addSubview(topView)
         view.addSubview(titleView)
         view.addSubview(weatherMainView)
         view.addSubview(descriptionView)
         view.addSubview(bottomView)
-//        bottomView.isHidden = true
         
         topView.delegate = self
-        
-//        refreshController.centerX(inView: view)
-//        refreshController.centerY(inView: view)
         
         topView.anchorView(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 48))
         
@@ -76,9 +71,12 @@ class NewHomeViewController: UIViewController {
             locationManger = CLLocationManager()
             locationManger.delegate = self
             locationManger.desiredAccuracy = kCLLocationAccuracyBest
-            locationManger.requestWhenInUseAuthorization()
+//            locationManger.requestWhenInUseAuthorization()
             locationManger.requestLocation()
         default:
+            locationManger.delegate = self
+            locationManger.requestWhenInUseAuthorization()
+            locationManger.requestAlwaysAuthorization()
             print("error, no permission")
         }
 //        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways{
@@ -169,4 +167,10 @@ extension NewHomeViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         debugPrint(error.localizedDescription)
     }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        //
+        manager.requestLocation()
+    }
+    
 }
