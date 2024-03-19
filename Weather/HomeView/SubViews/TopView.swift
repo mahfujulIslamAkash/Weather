@@ -16,7 +16,7 @@ class TopView: UIView {
         let searchButton = UIImageView()
         searchButton.image = Support.sheard.getSearchIcon()
         view.addSubview(searchButton)
-        searchButton.anchorView(left: view.leftAnchor, bottom: view.bottomAnchor, paddingLeft: .init(w: 11), paddingBottom: .init(h: 0), width: .init(w: 25), height: .init(h: 25))
+        searchButton.anchorView(top: view.topAnchor, left: view.leftAnchor, paddingLeft: .init(w: 11), width: .init(w: 25), height: .init(h: 25))
 //        searchButton.target(forAction: #selector(searchTapped), withSender: nil)
         searchButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchTapped)))
 //        searchButton.layer.borderWidth = 0.5

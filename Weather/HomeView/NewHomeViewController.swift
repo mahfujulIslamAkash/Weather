@@ -16,11 +16,63 @@ class NewHomeViewController: UIViewController {
         return controller
     }()
     
-    let topView = TopView()
-    let titleView = TitleView()
-    let weatherMainView = WeatherMainTitleView()
-    let descriptionView = DescriptionListView()
-    let bottomView = BottomView()
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollStackViewContainer)
+        scrollStackViewContainer.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        view.layer.borderWidth = 0.5
+//        view.backgroundColor = .green
+        view.alwaysBounceVertical = true
+//        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
+    lazy var scrollStackViewContainer: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.alignment = .fill
+//        view.distribution = .fill
+        view.spacing = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addArrangedSubview(topView)
+        view.addArrangedSubview(titleView)
+        view.addArrangedSubview(weatherMainView)
+        view.addArrangedSubview(descriptionView)
+        view.addArrangedSubview(bottomView)
+//        view.layer.borderWidth = 0.5
+//        view.backgroundColor = .yellow
+        return view
+    }()
+    
+    let topView: TopView = {
+        let view = TopView()
+        view.heightAnchor.constraint(equalToConstant: .init(h: 25)).isActive = true
+//        view.layer.borderWidth = 0.5
+        return view
+    }()
+    let titleView: TitleView = {
+        let view = TitleView()
+        view.heightAnchor.constraint(equalToConstant: .init(h: 45)).isActive = true
+        return view
+    }()
+    let weatherMainView: WeatherMainTitleView = {
+        let view = WeatherMainTitleView()
+        view.heightAnchor.constraint(equalToConstant: .init(h: 88)).isActive = true
+        return view
+    }()
+    let descriptionView: DescriptionListView = {
+        let view = DescriptionListView()
+        view.heightAnchor.constraint(equalToConstant: .init(h: 154)).isActive = true
+//        view.widthAnchor.constraint(equalToConstant: .init(w: 414)).isActive = true
+        return view
+    }()
+    let bottomView: BottomView = {
+        let view = BottomView()
+        view.heightAnchor.constraint(equalToConstant: .init(h: 100)).isActive = true
+        return view
+    }()
+    
     var locationManger: CLLocationManager = CLLocationManager()
     
     var weatherResult: WeatherResult!
@@ -37,23 +89,27 @@ class NewHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(topView)
-        view.addSubview(titleView)
-        view.addSubview(weatherMainView)
-        view.addSubview(descriptionView)
-        view.addSubview(bottomView)
+//        view.addSubview(topView)
+//        view.addSubview(titleView)
+//        view.addSubview(weatherMainView)
+//        view.addSubview(descriptionView)
+//        view.addSubview(bottomView)
+        view.addSubview(scrollView)
+//        scrollView.addSubview(scrollStackViewContainer)
+        scrollView.anchorView(top: view.topAnchor, left: view.leftAnchor,bottom: view.bottomAnchor, right: view.rightAnchor)
         
         topView.delegate = self
+        scrollStackViewContainer.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         
-        topView.anchorView(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 48))
-        
-        titleView.anchorView(top: topView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 45))
-        
-        weatherMainView.anchorView(top: titleView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 88))
-        
-        descriptionView.anchorView(top: weatherMainView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 154))
-        
-        bottomView.anchorView(top: descriptionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 100))
+//        topView.anchorView(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 48))
+//        
+//        titleView.anchorView(top: topView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 45))
+//        
+//        weatherMainView.anchorView(top: titleView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 88))
+//        
+//        descriptionView.anchorView(top: weatherMainView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 154))
+//        
+//        bottomView.anchorView(top: descriptionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height: .init(h: 100))
         
         getLocation()
         

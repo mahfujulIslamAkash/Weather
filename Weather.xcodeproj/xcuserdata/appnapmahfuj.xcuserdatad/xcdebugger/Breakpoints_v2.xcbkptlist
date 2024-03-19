@@ -30,9 +30,9 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "selectedCity(name:lat:lon:)"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "getWeather()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -189,9 +189,9 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "getLocation()"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -205,10 +205,10 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "NewHomeViewController"
-            landmarkType = "21">
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "updateDescriptionViewInfo()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "591679EB-3C3E-4C04-85D5-753A524CD607 - 2a4e49f4260556ca"
@@ -253,10 +253,10 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "NewHomeViewController"
-            landmarkType = "21">
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "updateMainViewInfo()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "873F7F24-D4CE-4026-AA14-0F71DF04891E - 2a4e49f42605562b"
@@ -301,8 +301,8 @@
             filePath = "Weather/HomeView/NewHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
             <Locations>
