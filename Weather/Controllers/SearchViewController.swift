@@ -87,7 +87,9 @@ extension SearchViewController: UITableViewDataSource {
         
         //Set the content of the cell to our searchResult data
         cell.textLabel?.text = searchResult.title
+        cell.textLabel?.textColor = .black
         cell.detailTextLabel?.text = searchResult.subtitle
+        cell.detailTextLabel?.textColor = .black
         cell.backgroundColor = .clear
         return cell
     }

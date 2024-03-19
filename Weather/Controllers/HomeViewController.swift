@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
     
     var cityInformation: CityModel!{
         didSet{
-            print("city changed")
+//            print("city changed")
             NetworkService.shared.setLatitude(cityInformation.lat)
             NetworkService.shared.setLongitude(cityInformation.lon)
             getWeather()
@@ -119,12 +119,13 @@ class HomeViewController: UIViewController {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManger = CLLocationManager()
             locationManger.delegate = self
-            locationManger.desiredAccuracy = kCLLocationAccuracyBest
-            locationManger.requestLocation()
+            locationManger.startUpdatingLocation()
+
         case .notDetermined, .denied, .restricted:
             showAlertForPermission()
         default:
             locationManger.delegate = self
+            locationManger.startUpdatingLocation()
             locationManger.requestWhenInUseAuthorization()
             locationManger.requestAlwaysAuthorization()
             print("error, no permission")
@@ -137,7 +138,7 @@ class HomeViewController: UIViewController {
     func getWeather(){
         if Connectivity.isConnectedToInternet{
             NetworkService.shared.getWeather(onSuccess: { [self] (result) in
-                print(result.current)
+//                print(result.current)
                 weatherResult = result
                 DispatchQueue.main.async { [self] in
                     UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: { [self] in
@@ -162,7 +163,11 @@ class HomeViewController: UIViewController {
         }
         
     }
-    
+}
+
+
+//MARK: UI Update functionality
+extension HomeViewController{
     func updateCityInfo(){
         if cityInformation == nil{
             getLocation()
@@ -184,9 +189,9 @@ class HomeViewController: UIViewController {
     func updateBottomViewInfo(){
         bottomView.updateData(weatherData: weatherResult)
     }
-    
 }
 
+//MARK: HomeView's Delegate
 extension HomeViewController: HomeViewProtocols{
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
         cityInformation = CityModel(name: name, lat: lat, lon: lon)
@@ -194,14 +199,20 @@ extension HomeViewController: HomeViewProtocols{
     
     func tappedOnSearch() {
         //go to the city choice
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "cityChoiseID") as! SearchViewController
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+        if Connectivity.isConnectedToInternet{
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "cityChoiseID") as! SearchViewController
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else{
+            showAlertForInternet()
+        }
+        
     }
     
     
 }
-
+//MARK: Location Delegate
 extension HomeViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
@@ -209,6 +220,7 @@ extension HomeViewController: CLLocationManagerDelegate{
             let latitude: Double = location.coordinate.latitude
             let longitude: Double = location.coordinate.longitude
             
+            manager.stopUpdatingLocation()
             
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(location) { [self] (placemarks, error) in
@@ -236,6 +248,7 @@ extension HomeViewController: CLLocationManagerDelegate{
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         debugPrint(error.localizedDescription)
+        manager.stopUpdatingLocation()
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
