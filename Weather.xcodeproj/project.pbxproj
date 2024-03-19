@@ -36,6 +36,7 @@
 		353729AD2BA99D8800915455 /* UIController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729AC2BA99D8800915455 /* UIController+Extension.swift */; };
 		353729B32BA9D94900915455 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729B22BA9D94900915455 /* Assets.swift */; };
 		353729B52BA9DC6900915455 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729B42BA9DC6900915455 /* Forecast.swift */; };
+		353729B82BA9E32A00915455 /* Refectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729B72BA9E32A00915455 /* Refectors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		353729AC2BA99D8800915455 /* UIController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIController+Extension.swift"; sourceTree = "<group>"; };
 		353729B22BA9D94900915455 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		353729B42BA9DC6900915455 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		353729B72BA9E32A00915455 /* Refectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refectors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		350A5DA12BA8B9BE00324FD4 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				353729B62BA9E2DF00915455 /* Refactors+Config */,
 				353729B12BA9D85800915455 /* AssetSupports */,
 				353729B02BA9D7BE00915455 /* NetworkServices */,
 				350A5D9E2BA8B75D00324FD4 /* Extensions */,
@@ -232,6 +235,14 @@
 			path = AssetSupports;
 			sourceTree = "<group>";
 		};
+		353729B62BA9E2DF00915455 /* Refactors+Config */ = {
+			isa = PBXGroup;
+			children = (
+				353729B72BA9E32A00915455 /* Refectors.swift */,
+			);
+			path = "Refactors+Config";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -313,6 +324,7 @@
 				353729A72BA956B800915455 /* Date+Extension.swift in Sources */,
 				350A5D9D2BA8B5ED00324FD4 /* WeatherViewModel.swift in Sources */,
 				353729AD2BA99D8800915455 /* UIController+Extension.swift in Sources */,
+				353729B82BA9E32A00915455 /* Refectors.swift in Sources */,
 				351E16B92BA8E10D009D5DA0 /* DescriptionListView.swift in Sources */,
 				350A5D882BA8B32500324FD4 /* AppDelegate.swift in Sources */,
 				3537299B2BA8F9F500915455 /* WeeklyForecastCell.swift in Sources */,
