@@ -22,14 +22,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinder()
+        setupBacgroundBinder()
         view.addSubview(fullUI)
         fullUI.anchorView(top: view.topAnchor, left: view.leftAnchor,bottom: view.bottomAnchor, right: view.rightAnchor)
         
         getLocation()
         
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(cameForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
+        homeVM.enterForegroundObserver(UIApplication.willEnterForegroundNotification)
+        homeVM.goingBacgroungObserver(UIApplication.didEnterBackgroundNotification)
         
     }
     
@@ -67,6 +67,17 @@ class HomeViewController: UIViewController {
                 
             }
             
+        })
+    }
+    func setupBacgroundBinder(){
+        homeVM.inBacground.binds({[weak self] inBackground in
+            if let inBackground = inBackground{
+                if !inBackground{
+                    if !Connectivity.isConnectedToInternet{
+                        self?.showAlertForInternet()
+                    }
+                }
+            }
         })
     }
     func updateUI(){
@@ -110,17 +121,11 @@ extension HomeViewController{
         }
         
     }
-    @objc func cameForeground() {
-        print("cameForeground")
-        if !Connectivity.isConnectedToInternet{
-            showAlertForInternet()
-        }
-        
-    }
 }
 
 //MARK: HomeView's Delegate
 extension HomeViewController: HomeViewProtocols{
+    
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
         homeVM.setLocationData(location: MyLocation(cityName: name, lat: lat, lon: lon))
         

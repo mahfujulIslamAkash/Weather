@@ -11,6 +11,7 @@ final class HomeViewModel{
     
     
     var weatherResult: ObservableObject<WeatherResult?> = ObservableObject(nil)
+    var inBacground: ObservableObject<Bool?> = ObservableObject(nil)
     
     func getLocation(){
         LocationService.shared.getLocation(completion: {[weak self] location in
@@ -44,6 +45,20 @@ final class HomeViewModel{
         NetworkService.shared.setLocationData(location: location)
         getWeather()
     }
-    
-    
+    func goingBacgroungObserver(_ forID: NSNotification.Name?){
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(goingBackground), name: forID, object: nil)
+    }
+    func enterForegroundObserver(_ forID: NSNotification.Name?){
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(cameForeground), name: forID, object: nil)
+    }
+    @objc func cameForeground() {
+        inBacground.value = false
+        
+    }
+    @objc func goingBackground() {
+        inBacground.value = true
+        
+    }
 }
