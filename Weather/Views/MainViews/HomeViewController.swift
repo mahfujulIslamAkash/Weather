@@ -71,11 +71,7 @@ class HomeViewController: UIViewController {
         view.heightAnchor.constraint(equalToConstant: .init(h: 100)).isActive = true
         return view
     }()
-    
-    //MARK: Location Manager
-    
-    var locationManger: CLLocationManager = CLLocationManager()
-    
+            
     var weatherResult: WeatherResult!
     
     var cityInformation: CityModel!{
@@ -85,6 +81,9 @@ class HomeViewController: UIViewController {
             getWeather()
         }
     }
+    
+    var homeVM: HomeViewModel = HomeViewModel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,22 +125,9 @@ class HomeViewController: UIViewController {
     }
     
     func getLocation() {
-        switch locationManger.authorizationStatus {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManger = CLLocationManager()
-            locationManger.delegate = self
-            locationManger.startUpdatingLocation()
-
-        case .denied, .restricted:
-            showAlertForPermission()
-        default:
-            locationManger.delegate = self
-//            locationManger.startUpdatingLocation()
-            locationManger.requestWhenInUseAuthorization()
-            locationManger.requestAlwaysAuthorization()
-            print("error, no permission")
-        }
-        
+        homeVM.getLocation(completion: {[weak self] currentLocation in
+            self?.cityInformation = CityModel(name: currentLocation.cityName, lat: currentLocation.lat, lon: currentLocation.lon)
+        })
         
         
     }
@@ -229,53 +215,4 @@ extension HomeViewController: HomeViewProtocols{
     
     
 }
-//MARK: Location Delegate
-extension HomeViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            
-            let latitude: Double = location.coordinate.latitude
-            let longitude: Double = location.coordinate.longitude
-            
-            manager.stopUpdatingLocation()
-            
-            let geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(location) { [self] (placemarks, error) in
-                if let error = error {
-                    debugPrint(error.localizedDescription)
-                }
-                if let placemarks = placemarks {
-                    if placemarks.count > 0 {
-                        let placemark = placemarks[0]
-                        if let city = placemark.locality {
-                            cityInformation = CityModel(name: city, lat: latitude, lon: longitude)
-                        }
-                        else{
-                            if let cityName = placemark.name {
-                                cityInformation = CityModel(name: cityName, lat: latitude, lon: longitude)
-                            }
-                            
-                        }
-                    }
-                }
-            }
-            
-            
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        debugPrint(error.localizedDescription)
-        manager.stopUpdatingLocation()
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways{
-            manager.startUpdatingLocation()
-        }
-        else{
-            showAlertForPermission()
-        }
-        
-    }
-    
-}
+
