@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
         view.addSubview(fullUI)
         fullUI.anchorView(top: view.topAnchor, left: view.leftAnchor,bottom: view.bottomAnchor, right: view.rightAnchor)
         
-        getWeather()
+        getLocation()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(cameForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -35,25 +35,16 @@ class HomeViewController: UIViewController {
     
     
     override func viewIsAppearing(_ animated: Bool) {
-//        if Connectivity.isConnectedToInternet{
-//            if !homeVM.havingCurrentLocation(){
-//                fullUI.refreshController.beginRefreshing()
-//
-//            }
-//        }
-//        else{
-//            showAlertForInternet()
-//        }
-        getWeather()
+        fullUI.refreshController.beginRefreshing()
         
     }
     
     @objc func pulledRefresh(){
-        getWeather()
+        getLocation()
         
     }
     
-    func getWeather(){
+    func getLocation(){
         if Connectivity.isConnectedToInternet{
             fullUI.refreshController.beginRefreshing()
             homeVM.getLocation()
@@ -91,7 +82,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController{
     func updateCityInfo(){
         if !homeVM.havingCurrentLocation(){
-            getWeather()
+            getLocation()
         }
         else{
             fullUI.titleView.cityName.text = homeVM.getCityName()

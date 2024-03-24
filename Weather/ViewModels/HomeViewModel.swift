@@ -8,6 +8,8 @@
 import Foundation
 
 final class HomeViewModel{
+    
+    
     var weatherResult: ObservableObject<WeatherResult?> = ObservableObject(nil)
     
     func getLocation(){
