@@ -71,28 +71,19 @@ class HomeViewController: UIViewController {
         view.heightAnchor.constraint(equalToConstant: .init(h: 100)).isActive = true
         return view
     }()
-            
-    var weatherResult: WeatherResult!
-    
-    var cityInformation: CityModel!{
-        didSet{
-            NetworkService.shared.setLatitude(cityInformation.lat)
-            NetworkService.shared.setLongitude(cityInformation.lon)
-            getWeather()
-        }
-    }
     
     var homeVM: HomeViewModel = HomeViewModel()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        binds()
         view.addSubview(scrollView)
         scrollView.anchorView(top: view.topAnchor, left: view.leftAnchor,bottom: view.bottomAnchor, right: view.rightAnchor)
         scrollStackViewContainer.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         topView.delegate = self
         
-        getLocation()
+        getWeather()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(cameForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -103,9 +94,9 @@ class HomeViewController: UIViewController {
     
     override func viewIsAppearing(_ animated: Bool) {
         if Connectivity.isConnectedToInternet{
-            if cityInformation == nil{
+            if !homeVM.havingCurrentLocation(){
                 refreshController.beginRefreshing()
-                getLocation()
+                getWeather()
             }
         }
         else{
@@ -116,74 +107,98 @@ class HomeViewController: UIViewController {
     
     @objc func pulledRefresh(){
         if Connectivity.isConnectedToInternet{
-            getLocation()
+            getWeather()
         }
         else{
             showAlertForInternet()
         }
-        
-    }
-    
-    func getLocation() {
-        homeVM.getLocation(completion: {[weak self] currentLocation in
-            self?.cityInformation = CityModel(name: currentLocation.cityName, lat: currentLocation.lat, lon: currentLocation.lon)
-        })
-        
         
     }
     
     func getWeather(){
-        if Connectivity.isConnectedToInternet{
-            NetworkService.shared.getWeather(onSuccess: { [self] (result) in
-                weatherResult = result
-                DispatchQueue.main.async { [self] in
-                    UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: { [self] in
-                        updateCityInfo()
-                        updateMainViewInfo()
-                        updateDescriptionViewInfo()
-                        updateBottomViewInfo()
-                    }, completion: { [self]_ in
-                        refreshController.endRefreshing()
-                    })
-                    
-                }
-                
-                
-            }) { [self] (errorMessage) in
-                debugPrint(errorMessage)
-                refreshController.endRefreshing()
-            }
-        }
-        else{
-            showAlertForInternet()
-        }
-        
+        homeVM.getLocation()
     }
+    
+    func binds(){
+        homeVM.weatherResult.binds({[weak self] result in
+            if let _ = result{
+                self?.refreshController.endRefreshing()
+                self?.updateUI()
+            }else{
+                
+            }
+            
+        })
+    }
+    func updateUI(){
+        updateCityInfo()
+        updateMainViewInfo()
+        updateDescriptionViewInfo()
+        updateBottomViewInfo()
+    }
+    
+//    func getWeather(){
+//        homeVM.getWeather()
+//        if Connectivity.isConnectedToInternet{
+//            NetworkService.shared.getWeather(onSuccess: { [self] (result) in
+//                weatherResult = result
+//                DispatchQueue.main.async { [self] in
+//                    UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: { [self] in
+//                        updateCityInfo()
+//                        updateMainViewInfo()
+//                        updateDescriptionViewInfo()
+//                        updateBottomViewInfo()
+//                    }, completion: { [self]_ in
+//                        refreshController.endRefreshing()
+//                    })
+//                    
+//                }
+//                
+//                
+//            }) { [self] (errorMessage) in
+//                debugPrint(errorMessage)
+//                refreshController.endRefreshing()
+//            }
+//        }
+//        else{
+//            showAlertForInternet()
+//        }
+//        
+//    }
 }
 
 
 //MARK: UI Update functionality
 extension HomeViewController{
     func updateCityInfo(){
-        if cityInformation == nil{
-            getLocation()
+        if !homeVM.havingCurrentLocation(){
+            getWeather()
         }
         else{
-            titleView.cityName.text = cityInformation.name
+            titleView.cityName.text = homeVM.getCityName()
             titleView.dateLabel.text = Date.getTodaysDate()
         }
         
     }
     func updateMainViewInfo(){
-        weatherMainView.mainWeatherImageView.image = UIImage(named: weatherResult.current.weather[0].icon)
-        weatherMainView.temparatureLabel.text = "\(Int(weatherResult.current.temp))°"
-        weatherMainView.currentWeatherLabel.text = weatherResult.current.weather[0].description.capitalized
+        if let currentWeather = homeVM.weatherResult.value?.current{
+            weatherMainView.mainWeatherImageView.image = UIImage(named: currentWeather.weather[0].icon)
+            weatherMainView.temparatureLabel.text = "\(Int(currentWeather.temp))°"
+            weatherMainView.currentWeatherLabel.text = currentWeather.weather[0].description.capitalized
+        }
+        
     }
     func updateDescriptionViewInfo(){
-        descriptionView.updateData(weatherData: weatherResult)
+        if let currentWeather = homeVM.weatherResult.value?.current{
+            descriptionView.updateData(weatherData: currentWeather)
+        }
+        
     }
     func updateBottomViewInfo(){
-        bottomView.updateData(weatherData: weatherResult)
+        if let daily = homeVM.weatherResult.value?.daily{
+            bottomView.updateData(daily: daily)
+        }
+        
     }
     @objc func cameForeground() {
         print("cameForeground")
@@ -197,7 +212,8 @@ extension HomeViewController{
 //MARK: HomeView's Delegate
 extension HomeViewController: HomeViewProtocols{
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
-        cityInformation = CityModel(name: name, lat: lat, lon: lon)
+        homeVM.setLocationData(location: MyLocation(cityName: name, lat: lat, lon: lon))
+        
     }
     
     func tappedOnSearch() {

@@ -54,9 +54,9 @@ class BottomView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateData(weatherData: WeatherResult){
+    func updateData(daily: [Daily]){
 
-        daily = weatherData.daily
+        self.daily = daily
         collectionView.reloadData()
     }
 

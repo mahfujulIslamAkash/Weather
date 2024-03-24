@@ -14,36 +14,62 @@ class NetworkService {
     
     let URL_SAMPLE = "https://api.openweathermap.org/data/2.5/onecall?lat=60.99&lon=30.9&appid=89575d3c850c4fe09a01e9aedf6aec9e"
     let URL_API_KEY = "89575d3c850c4fe09a01e9aedf6aec9e"
-    var URL_LATITUDE = "60.99"
-    var URL_LONGITUDE = "30.0"
     var URL_GET_ONE_CALL = ""
     let URL_BASE = "https://api.openweathermap.org/data/2.5"
+//    var URL_LATITUDE = "60.99"
+//    var URL_LONGITUDE = "30.0"
+//    var CITY_NAME = "San Francisco"
+    var CURRENT_LOCATION: MyLocation?
     
     let session = URLSession(configuration: .default)
     
-    func buildURL() -> String {
-        URL_GET_ONE_CALL = "/onecall?lat=" + URL_LATITUDE + "&lon=" + URL_LONGITUDE + (defaultC ? "&units=metric" : "&units=imperial") + "&appid=" + URL_API_KEY
-        return URL_BASE + URL_GET_ONE_CALL
+    func buildURL() -> String? {
+        if let location = CURRENT_LOCATION{
+            URL_GET_ONE_CALL = "/onecall?lat=" + "\(location.lat)" + "&lon=" + "\(location.lon)" + (defaultC ? "&units=metric" : "&units=imperial") + "&appid=" + URL_API_KEY
+            return URL_BASE + URL_GET_ONE_CALL
+        }else{
+            return nil
+        }
+        
     }
     
-    func setLatitude(_ latitude: String) {
-        URL_LATITUDE = latitude
+    func setLocationData(location: MyLocation){
+        CURRENT_LOCATION = location
     }
     
-    func setLatitude(_ latitude: Double) {
-        setLatitude(String(latitude))
+    func havingCurrentLocation() -> Bool{
+        if let _ = CURRENT_LOCATION{
+            return true
+        }else{
+            return false
+        }
     }
     
-    func setLongitude(_ longitude: String) {
-        URL_LONGITUDE = longitude
-    }
-    
-    func setLongitude(_ longitude: Double) {
-        setLongitude(String(longitude))
-    }
+//    func setLatitude(_ latitude: String) {
+//        URL_LATITUDE = latitude
+//    }
+//    
+//    func setLatitude(_ latitude: Double) {
+//        setLatitude(String(latitude))
+//    }
+//    
+//    func setLongitude(_ longitude: String) {
+//        URL_LONGITUDE = longitude
+//    }
+//    
+//    func setLongitude(_ longitude: Double) {
+//        setLongitude(String(longitude))
+//    }
+//    func setCityName(_ name: String){
+//        CITY_NAME = name
+//    }
     
     func getWeather(onSuccess: @escaping (WeatherResult) -> Void, onError: @escaping (String) -> Void) {
-        guard let url = URL(string: buildURL()) else {
+        guard let path = buildURL() else {
+            onError("Error building URL")
+            return
+        }
+        guard let url = URL(string: path) else {
             onError("Error building URL")
             return
         }

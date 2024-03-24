@@ -23,7 +23,6 @@ class DescriptionListView: UIView {
         return col
     }()
     
-    var weatherData: WeatherResult!
     
     
     
@@ -37,11 +36,10 @@ class DescriptionListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateData(weatherData: WeatherResult){
-        self.weatherData = weatherData
-        forecasts[0].description = "\(weatherData.current.dew_point)cm"
-        forecasts[1].description = "\(weatherData.current.humidity)%"
-        forecasts[2].description = "\(weatherData.current.wind_speed)km/h"
+    func updateData(weatherData: Current){
+        forecasts[0].description = "\(weatherData.dew_point)cm"
+        forecasts[1].description = "\(weatherData.humidity)%"
+        forecasts[2].description = "\(weatherData.wind_speed)km/h"
         collectionView.reloadData()
     }
 
