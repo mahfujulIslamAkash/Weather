@@ -58,7 +58,9 @@ class HomeViewController: UIViewController {
             fullUI.refreshController.beginRefreshing()
             homeVM.getLocation()
         }else{
-            fullUI.refreshController.endRefreshing()
+            DispatchQueue.main.async {
+                self.fullUI.refreshController.endRefreshing()
+            }
             showAlertForInternet()
             
         }
