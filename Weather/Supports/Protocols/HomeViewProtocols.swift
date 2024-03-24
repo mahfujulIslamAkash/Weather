@@ -11,5 +11,6 @@ import CoreLocation
 protocol HomeViewProtocols: AnyObject{
     func tappedOnSearch()
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees)
+    func pulledRefresh()
     
 }
