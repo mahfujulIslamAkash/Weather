@@ -233,7 +233,6 @@
 			children = (
 				35E7C6CC2BAF8F9600BCC480 /* HomeView */,
 				3508D6432BB0C84A005D3C18 /* SearchView */,
-				353729AF2BA9D6B400915455 /* ReusableViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +273,7 @@
 			children = (
 				351E16BC2BA8E258009D5DA0 /* HomeViewController.swift */,
 				351E16B12BA8E004009D5DA0 /* SubViews */,
+				353729AF2BA9D6B400915455 /* ReusableViews */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
