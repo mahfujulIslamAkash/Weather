@@ -22,7 +22,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBinder()
-        setupBacgroundBinder()
         view.addSubview(fullUI)
         fullUI.anchorView(top: view.topAnchor, left: view.leftAnchor,bottom: view.bottomAnchor, right: view.rightAnchor)
         
@@ -30,6 +29,7 @@ class HomeViewController: UIViewController {
         
         homeVM.enterForegroundObserver(UIApplication.willEnterForegroundNotification)
         homeVM.goingBacgroungObserver(UIApplication.didEnterBackgroundNotification)
+        homeVM.delegate = self
         
     }
     
@@ -41,21 +41,10 @@ class HomeViewController: UIViewController {
     
     @objc func pulledRefresh(){
         getLocation()
-        
     }
     
     func getLocation(){
-        if Connectivity.isConnectedToInternet{
-            fullUI.refreshController.beginRefreshing()
-            homeVM.getLocation()
-        }else{
-            DispatchQueue.main.async {
-                self.fullUI.refreshController.endRefreshing()
-            }
-            showAlertForInternet()
-            
-        }
-        
+        homeVM.getLocation()
     }
     
     func setupBinder(){
@@ -69,28 +58,18 @@ class HomeViewController: UIViewController {
             
         })
     }
-    func setupBacgroundBinder(){
-        homeVM.inBacground.binds({[weak self] inBackground in
-            if let inBackground = inBackground{
-                if !inBackground{
-                    if !Connectivity.isConnectedToInternet{
-                        self?.showAlertForInternet()
-                    }
-                }
-            }
-        })
     }
+
+
+//MARK: UI Update functionality
+extension HomeViewController{
     func updateUI(){
         updateCityInfo()
         updateMainViewInfo()
         updateDescriptionViewInfo()
         updateBottomViewInfo()
     }
-}
 
-
-//MARK: UI Update functionality
-extension HomeViewController{
     func updateCityInfo(){
         if !homeVM.havingCurrentLocation(){
             getLocation()
@@ -125,6 +104,25 @@ extension HomeViewController{
 
 //MARK: HomeView's Delegate
 extension HomeViewController: HomeViewProtocols{
+    func noInternet() {
+        showAlertForInternet()
+    }
+    func endLoading() {
+        DispatchQueue.main.async {
+            self.fullUI.refreshController.endRefreshing()
+        }
+    }
+    
+    func cameForeground() {
+        if !Connectivity.isConnectedToInternet{
+            showAlertForInternet()
+        }
+    }
+    
+    func goingBackground() {
+        //implement in future
+    }
+    
     
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
         homeVM.setLocationData(location: MyLocation(cityName: name, lat: lat, lon: lon))

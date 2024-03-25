@@ -9,11 +9,23 @@ import Foundation
 
 final class HomeViewModel{
     
-    
+    weak var delegate: HomeViewProtocols?
     var weatherResult: ObservableObject<WeatherResult?> = ObservableObject(nil)
-    var inBacground: ObservableObject<Bool?> = ObservableObject(nil)
+//    var inBacground: ObservableObject<Bool?> = ObservableObject(nil)
     
     func getLocation(){
+        
+        if Connectivity.isConnectedToInternet{
+            delegate?.startLoading()
+            fetchLocation()
+        }else{
+            delegate?.noInternet()
+            
+        }
+        
+    }
+    
+    func fetchLocation(){
         LocationService.shared.getLocation(completion: {[weak self] location in
             NetworkService.shared.setLocationData(location: location)
             self?.getWeather()
@@ -24,7 +36,9 @@ final class HomeViewModel{
     private func getWeather(){
         NetworkService.shared.getWeather(onSuccess: {[weak self] result in
             self?.weatherResult.value = result
-        }, onError: {error in
+            self?.delegate?.endLoading()
+        }, onError: {[weak self] error in
+            self?.delegate?.endLoading()
         })
     }
     
@@ -54,11 +68,13 @@ final class HomeViewModel{
         notificationCenter.addObserver(self, selector: #selector(cameForeground), name: forID, object: nil)
     }
     @objc func cameForeground() {
-        inBacground.value = false
+//        inBacground.value = false
+        delegate?.cameForeground()
         
     }
     @objc func goingBackground() {
-        inBacground.value = true
+//        inBacground.value = true
+        delegate?.goingBackground()
         
     }
 }

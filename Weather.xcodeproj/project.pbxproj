@@ -40,7 +40,7 @@
 		353729C12BA9F27600915455 /* Reachability+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353729C02BA9F27600915455 /* Reachability+Extension.swift */; };
 		353729C42BA9F3A800915455 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 353729C32BA9F3A800915455 /* Alamofire */; };
 		35E7C6CE2BAF8FC000BCC480 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C6CD2BAF8FC000BCC480 /* HomeViewModel.swift */; };
-		35E7C6D02BAF8FDE00BCC480 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C6CF2BAF8FDE00BCC480 /* Observable.swift */; };
+		35E7C6D02BAF8FDE00BCC480 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C6CF2BAF8FDE00BCC480 /* ObservableObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +78,7 @@
 		353729B72BA9E32A00915455 /* Refectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refectors.swift; sourceTree = "<group>"; };
 		353729C02BA9F27600915455 /* Reachability+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reachability+Extension.swift"; sourceTree = "<group>"; };
 		35E7C6CD2BAF8FC000BCC480 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		35E7C6CF2BAF8FDE00BCC480 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		35E7C6CF2BAF8FDE00BCC480 /* ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +183,7 @@
 				353729B02BA9D7BE00915455 /* NetworkServices */,
 				350A5D9E2BA8B75D00324FD4 /* Extensions */,
 				350A5DA62BA8CDF200324FD4 /* Fonts */,
-				35E7C6CF2BAF8FDE00BCC480 /* Observable.swift */,
+				35E7C6CF2BAF8FDE00BCC480 /* ObservableObject.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -365,7 +365,7 @@
 				353729A72BA956B800915455 /* Date+Extension.swift in Sources */,
 				353729AD2BA99D8800915455 /* UIController+Extension.swift in Sources */,
 				353729B82BA9E32A00915455 /* Refectors.swift in Sources */,
-				35E7C6D02BAF8FDE00BCC480 /* Observable.swift in Sources */,
+				35E7C6D02BAF8FDE00BCC480 /* ObservableObject.swift in Sources */,
 				351E16B92BA8E10D009D5DA0 /* DescriptionListView.swift in Sources */,
 				350A5D882BA8B32500324FD4 /* AppDelegate.swift in Sources */,
 				3537299B2BA8F9F500915455 /* WeeklyForecastCell.swift in Sources */,
