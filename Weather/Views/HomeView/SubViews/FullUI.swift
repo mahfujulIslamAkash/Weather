@@ -10,8 +10,10 @@ import CoreLocation
 
 class FullUI: UIView {
     
-    weak var delegate: HomeViewProtocols?
+//    weak var delegate: HomeViewProtocols?
 
+    var pullToRefresh: (()->Void)?
+    var searchCallBack: (()->Void)?
     //MARK: UI Elements
     lazy var refreshController:  UIRefreshControl = {
         let controller = UIRefreshControl()
@@ -48,9 +50,11 @@ class FullUI: UIView {
     }()
     
     lazy var topView: TopView = {
-        let view = TopView()
+        let view = TopView(searchCallBack: { [weak self] in
+            self?.callback()
+        })
         view.heightAnchor.constraint(equalToConstant: .init(h: 25)).isActive = true
-        view.delegate = self
+//        view.delegate = self
         //        view.layer.borderWidth = 0.5
         return view
     }()
@@ -75,9 +79,11 @@ class FullUI: UIView {
         return view
     }()
     
-    init(width: CGFloat){
+    init(width: CGFloat, pull: @escaping ()->Void, searchCallback: @escaping ()->Void){
         super.init(frame: .zero)
         updateUI(width: width)
+        pullToRefresh = pull
+        searchCallBack = searchCallback
     }
     
     func updateUI(width: CGFloat){
@@ -91,20 +97,22 @@ class FullUI: UIView {
     }
     
     @objc func pulledRefresh(){
-        
-        delegate?.pulledRefresh()
+        self.pullToRefresh!()
+    }
+    func callback(){
+        self.searchCallBack!()
     }
 }
 
 
-extension FullUI: HomeViewProtocols{
-    func tappedOnSearch() {
-        delegate?.tappedOnSearch()
-    }
-    
-    func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
-        delegate?.selectedCity(name: name, lat: lat, lon: lon)
-    }
-    
-    
-}
+//extension FullUI: HomeViewProtocols{
+//    func tappedOnSearch() {
+//        delegate?.tappedOnSearch()
+//    }
+//    
+//    func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
+//        delegate?.selectedCity(name: name, lat: lat, lon: lon)
+//    }
+//    
+//    
+//}

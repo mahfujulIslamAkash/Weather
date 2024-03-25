@@ -11,13 +11,18 @@ import CoreLocation
 class HomeViewController: UIViewController {
     
     lazy var fullUI: FullUI = {
-        let view = FullUI(width: self.view.frame.width)
-        view.delegate = self
+        let view = FullUI(width: self.view.frame.width, pull: {[weak self] in
+            print("home pull")
+            self?.pulledRefresh()
+        }, searchCallback: {[weak self] in
+            self?.tappedOnSearch()
+            
+        })
         return view
     }()
     
     var homeVM: HomeViewModel = HomeViewModel()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +48,24 @@ class HomeViewController: UIViewController {
         getLocation()
     }
     
+    func tappedOnSearch() {
+        homeVM.goToSerchVC(completion: {[weak self] success in
+            if success{
+                self?.goToSearchVC()
+            }else{
+                self?.showAlertForInternet()
+            }
+        })
+        
+    }
+    
     func getLocation(){
         homeVM.getLocation()
+    }
+    func goToSearchVC(){
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "cityChoiseID") as! SearchViewController
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func setupBinder(){
@@ -52,13 +73,10 @@ class HomeViewController: UIViewController {
             if let _ = result{
                 self?.fullUI.refreshController.endRefreshing()
                 self?.updateUI()
-            }else{
-                
             }
-            
         })
     }
-    }
+}
 
 
 //MARK: UI Update functionality
@@ -69,7 +87,7 @@ extension HomeViewController{
         updateDescriptionViewInfo()
         updateBottomViewInfo()
     }
-
+    
     func updateCityInfo(){
         if !homeVM.havingCurrentLocation(){
             getLocation()
@@ -119,29 +137,9 @@ extension HomeViewController: HomeViewProtocols{
         }
     }
     
-    func goingBackground() {
-        //implement in future
-    }
-    
-    
     func selectedCity(name: String, lat: CLLocationDegrees, lon: CLLocationDegrees) {
         homeVM.setLocationData(location: MyLocation(cityName: name, lat: lat, lon: lon))
         
     }
-    
-    func tappedOnSearch() {
-        //go to the city choice
-        if Connectivity.isConnectedToInternet{
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "cityChoiseID") as! SearchViewController
-            vc.delegate = self
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        else{
-            showAlertForInternet()
-        }
-        
-    }
-    
-    
 }
 

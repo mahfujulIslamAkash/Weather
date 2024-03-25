@@ -11,6 +11,7 @@ class TopView: UIView {
     
     weak var delegate: HomeViewProtocols?
     
+    var searchTappedCallback: (()->Void)?
     lazy var header: UIView = {
         let view = UIView()
         let searchButton = UIImageView()
@@ -25,16 +26,24 @@ class TopView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(header)
-        header.anchorView(top: topAnchor, left: leftAnchor, bottom:  bottomAnchor, right: rightAnchor)
+        updateUI()
+    }
+    init(searchCallBack: @escaping()->Void){
+        super.init(frame: .zero)
+        updateUI()
+        self.searchTappedCallback = searchCallBack
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    func updateUI(){
+        addSubview(header)
+        header.anchorView(top: topAnchor, left: leftAnchor, bottom:  bottomAnchor, right: rightAnchor)
+    }
     @objc func searchTapped(){
-        delegate?.tappedOnSearch()
+//        delegate?.tappedOnSearch()
+        searchTappedCallback!()
     }
     
 }

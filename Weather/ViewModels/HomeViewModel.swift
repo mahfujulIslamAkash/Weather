@@ -68,13 +68,19 @@ final class HomeViewModel{
         notificationCenter.addObserver(self, selector: #selector(cameForeground), name: forID, object: nil)
     }
     @objc func cameForeground() {
-//        inBacground.value = false
         delegate?.cameForeground()
         
     }
     @objc func goingBackground() {
-//        inBacground.value = true
         delegate?.goingBackground()
         
+    }
+    
+    func goToSerchVC(completion: @escaping(Bool) ->Void){
+        if Connectivity.isConnectedToInternet{
+            completion(true)
+        }else{
+            completion(false)
+        }
     }
 }

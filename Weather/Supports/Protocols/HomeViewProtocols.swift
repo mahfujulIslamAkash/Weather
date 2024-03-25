@@ -20,6 +20,7 @@ protocol HomeViewProtocols: AnyObject{
 }
 
 extension HomeViewProtocols{
+    func tappedOnSearch(){}
     func cameForeground(){}
     func goingBackground(){}
     func noInternet(){}
